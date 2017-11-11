@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+#search-location-lbl{	
+	 float:right;
+	 padding:0;
+	 margin: 80px 0 80px 0;	
+}
+
+#search-location{	
+    display: inline-block;
+    margin:80px 0 80px 0;
+    padding:0;   
+    width:100%;
+}
+
+#location-search-btn{	    
+    margin:80px 0 80px 10px;   
+    width:100px;   
+}
+
+#create-account-btn{
+	margin-top:80px;
+	margin-bottom:80px;
+	width:80%;
+}

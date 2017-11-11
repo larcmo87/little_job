@@ -1,0 +1,10 @@
+.form-label{
+	position:relative;
+	display:inline-block;
+	float:left;
+	color: black;
+}
+
+#login-submit{
+	float:right;
+}
