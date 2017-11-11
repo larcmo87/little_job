@@ -1,4 +1,5 @@
 module.exports = {
-  Book: require("./book"),
-  Grade: require("./grade")
-};
+	Bid: require("./bid.js"),
+	Project: require("./project.js"),
+	User: require("./user.js") 
+}
