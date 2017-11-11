@@ -17,7 +17,7 @@ const projectSchema = new Schema({
 	status: {
 		type: String,
 		required: true,
-		enum: ["active", "inProgress", "complete"],
+		enum: ["active", "complete"],
 		default: "active";
 	},
 	// bid is a child of the project
