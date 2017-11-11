@@ -15,10 +15,6 @@ const userSchema = new Schema({
 		required: true,
 		min: 8
 	},
-	web_token: {
-		type: Boolean,
-		required: true
-	},
 	user_type: {
 		type: String,
 		required: true,
@@ -33,6 +29,12 @@ const userSchema = new Schema({
 	},
 	phone_number: { type: String },
 	credentials: { type: String },
+	location: {
+		city: { type: String },
+		state: { type: String },
+		address: { type: String },
+		zip: { type: String }
+	}
 	car: {
 		make: { type: String },
 		model: { type: String },
