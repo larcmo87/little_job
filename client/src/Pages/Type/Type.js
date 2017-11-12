@@ -4,12 +4,11 @@ import {  BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
 import Button  from '../../components/Button'
-import Type  from '../../components/Button'
 
 
 const DAY_FORMAT = 'YYYYMMDD';
 
-class Login extends Component {
+class Type extends Component {
 	
 	// state = {
 	//     nytArticles: [],
@@ -92,79 +91,18 @@ class Login extends Component {
 				<div className="row">
 					<div className="col-sm-2 col-md-2 col-lg-2">
 					</div>
-					<div className="col-sm-8 col-md-8 col-lg-8">													
-						<div className="row">
-							<div className="col-sm-2 col-md-2 col-lg-2">																		
-								<label id="search-location-lbl">Work Ads:</label>
-							</div>
-							<div className="col-sm-8 col-md-8 col-lg-8">		
-								<Input
-									className="search"
-									type="text"
-									id="search-location"
-									placeholder="Search Location"
-								/>
-							</div>
-							<div className="col-sm-2 col-md-2 col-lg-2">		
-								<Button
-									type="button"
-									text="Search"
-									id="location-search-btn"
-									class="btn btn-info btn-sm"										  	
-								/>									
-							</div>	
-							
-						</div>{/*end of row class}*/}							
-						<div className="row">
-							<div className="col-sm-6 col-md-6 col-lg-6">
-								<Panel>
-								  <PanelHeading 
-								  	title="Log In"
-								  	/>
-								  <PanelBody>
-								  	<Form>
-								  		<FormLabel
-								  		  for="user-id"
-								  		  text="User ID"
-								  		/>								  		
-								  		<Input
-								  		   type="text"
-								  		   id="user-id"
-								  		/>
-								  		<FormLabel
-								  		  for="user-password"
-								  		  text="Password"
-								  		/>
-								  		<Input
-								  		   type="password"
-								  		   id="user-password"
-								  		/>
-								  		<Submit 
-								  			id="login-submit"
-								  			text="Log In"
-								  		/>
-								  	</Form>
-								  </PanelBody>
-								</Panel>
-							</div>
-							<div className="col-sm-6 col-md-6 col-lg-6">
-								<Panel id="create-account-pnl">
-									<PanelHeading 
-									  	title="Create Account"
-									  	/>
-								  	<PanelBody id="create-account-pnl-body">
-								  		 <Link to={"/type"}>
-								  		<Button
-											type="button"
-										  	text="Create"
-										  	id="create-account-btn"
-										  	class="btn btn-info btn-sm"										  	
-										/>
-										</Link>
-								  </PanelBody>
-								</Panel>
-							</div>
-						</div>{/*end of row class}*/}	
+					<div className="col-sm-8 col-md-8 col-lg-8">
+						<Panel>
+						  <PanelHeading 
+						  	title="User Type"
+						  	/>
+						  <PanelBody>
+						  	 <Link to={"/mechanic"}>
+						  	 	Mechanic (Bidder)
+						  	 </Link>
+						  </PanelBody>
+						</Panel>						
+						
 					</div>					
 					<div className="col-sm-2 col-md-2 col-lg-2">
 					</div>
@@ -175,4 +113,4 @@ class Login extends Component {
 	}
 }
  
-export default Login;
+export default Type;

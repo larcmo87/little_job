@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import NavBar from './components/Nav';
+import Jumbotron from './components/jumbotron';
 import Main from './Main';
 
 
 const App = () =>{
   return(
   <div className="App">
-        <NavBar />
+        <Jumbotron />
         
         <div className="container-fluid">         
           <Main />
