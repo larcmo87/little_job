@@ -1,9 +1,10 @@
 import React from "react";
+import CSS from "./JumbotronCSS.css";
 
 const Jumbotron = () =>
   <div style={{ height: 300 }} className="jumbotron">
-    <h1> New York Times Article Scrubber</h1>
-    <h3>Search for and annotate atricles of interest!</h3>
+    <h1> Little Job</h1>
+    <a href="#"> Test Link</a>
   </div>;
 
 export default Jumbotron;
