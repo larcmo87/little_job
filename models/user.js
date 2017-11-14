@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Bid = require("./bid.js");
-const Project = require("./project.js");
 
 const userSchema = new Schema({
 	
@@ -34,7 +32,7 @@ const userSchema = new Schema({
 		state: { type: String },
 		address: { type: String },
 		zip: { type: String }
-	}
+	},
 	car: {
 		make: { type: String },
 		model: { type: String },
@@ -42,16 +40,16 @@ const userSchema = new Schema({
 		fuel: { type: String },
 		license: { type: String }
 	},
-	project: {
+	project: [{
 		type: Schema.Types.ObjectId,
 		ref: "Project"
-	},
-	bid: {
+	}],
+	bid: [{
 		type: Schema.Types.ObjectId,
 		ref: "Bid"
-	}
+	}]
 });
 
-const Poster = mongoose.model("Poster", bidSchema);
+const User = mongoose.model("User", userSchema);
 
-module.exports = Poster;
+module.exports = User;
