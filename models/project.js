@@ -20,8 +20,11 @@ const projectSchema = new Schema({
 		enum: ["active", "complete"],
 		default: "active";
 	},
-	// bid is a child of the project
-	bid: [Bid]
+	// bid is a child of the project	
+	bid: {
+		type: Schema.Types.ObjectId,
+		ref: "Bid"
+	}
 });
 
 const Project = mongoose.model("Project", projectSchema);
