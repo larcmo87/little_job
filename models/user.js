@@ -18,7 +18,7 @@ const userSchema = new Schema({
 	user_type: {
 		type: String,
 		required: true,
-		enum: ["client", "mechanic"]
+		enum: ["poster", "mechanic"]
 	},
 	email: {
 		type: String,
@@ -32,9 +32,8 @@ const userSchema = new Schema({
 	location: {
 		city: { type: String },
 		state: { type: String },
-		address: { type: String },
 		zip: { type: String }
-	}
+	},
 	car: {
 		make: { type: String },
 		model: { type: String },
