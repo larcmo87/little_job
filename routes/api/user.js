@@ -6,9 +6,9 @@ router.route("/user")
   .get(usersController.findAll)
   .post(usersController.create);
 
-// Matches with "/api/books/:id"
+// Matches with "/api/user/:id"
 router
-  .route("/:id")
+  .route("/user/:id")
   .get(usersController.findById)
   .put(usersController.update)
   .delete(usersController.remove);
