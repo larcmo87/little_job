@@ -1,4 +1,6 @@
 import { Form, Input, FormLabel, Submit } from "../../components/Form";
+import { Redirect } from 'react-router';
+
 import React, { Component } from 'react';
 import {  BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import API from '../../utils/API';
@@ -6,23 +8,19 @@ import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
 import Button  from '../../components/Button'
 import CSS from "./MechanicCSS.css";
 
+
 const DAY_FORMAT = 'YYYYMMDD';
 
 class Mechanic extends Component {
 	
-	// state = {
-	//     nytArticles: [],
-	//     mongoArticles: [],
-	//     query: "",
-	//     topic: "",
-	//     beginDT: "19500101",
-	//     endDT: moment(Date.now()).format(DAY_FORMAT)
+	state = {
+	    redirect: ""
 	   
- //  	};
+  	};
 
- //  	componentDidMount() {
-   
- //  	}
+  	componentDidMount() {
+   		
+  	}
 
 	// searchNYT = (query, beginDt, endDt) => {
 	// 	this.setState({
@@ -84,10 +82,23 @@ class Mechanic extends Component {
 	//   };
 
 
+
+	serchpage = event => {
+		 event.preventDefault();
+		 console.log("In serchpage");
+		  this.setState({redirect: true});
+	};
+
+
 	render() {
-		  
+		  if (this.state.redirect) {
+		    return <Redirect push to="/login" />;
+		  }
+
 		return (
+
 			<div className="login">
+				
 				<div className="row">
 					<div className="col-sm-2 col-md-2 col-lg-2">
 					</div>
@@ -97,9 +108,9 @@ class Mechanic extends Component {
 						  	title="Mechanic"
 						  	/>
 						  <PanelBody>
-						  	<Form>
+						  	<Form onSubmit={this.serchpage}>
 						  		<FormLabel
-						  		  for="user-id"
+						  		  
 						  		  text="User ID"
 						  		/>								  		
 						  		<Input
@@ -107,7 +118,7 @@ class Mechanic extends Component {
 						  		   id="user-id"
 						  		/>
 						  		<FormLabel
-						  		  for="user-password"
+						  		  
 						  		  text="Password"
 						  		/>
 						  		<Input
@@ -115,7 +126,6 @@ class Mechanic extends Component {
 						  		   id="user-password"
 						  		/>
 						  		<FormLabel
-						  		  for="name"
 						  		  text="Name"
 						  		/>								  		
 						  		<Input
@@ -123,7 +133,7 @@ class Mechanic extends Component {
 						  		   id="name"
 						  		/>
 						  		<FormLabel
-						  		  for="email"
+						  		  
 						  		  text="Email"
 						  		/>
 						  		<Input
@@ -131,7 +141,7 @@ class Mechanic extends Component {
 						  		   id="email"
 						  		/>
 						  		<FormLabel
-						  		  for="city"
+						  		  
 						  		  text="City"
 						  		/>								  		
 						  		<Input
@@ -139,7 +149,7 @@ class Mechanic extends Component {
 						  		   id="city"
 						  		/>
 						  		<FormLabel
-						  		  for="state"
+						  		  
 						  		  text="State"
 						  		/>
 						  		<Input
@@ -147,17 +157,20 @@ class Mechanic extends Component {
 						  		   id="state"
 						  		/>
 						  		<FormLabel
-						  		  for="zip"
+						  		 
 						  		  text="Zip Code"
 						  		/>
 						  		<Input
 						  		   type="text"
 						  		   id="zip"
-						  		/>						  		
+						  		/>		
 						  		
 						  		<Submit 
 						  			id="login-submit"
 						  			text="Submit"
+						  			
+			   			 			onClick={this.serchpage}
+
 						  		/>
 
 						  	</Form>

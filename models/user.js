@@ -4,7 +4,7 @@ const Bid = require("./bid.js");
 const Project = require("./project.js");
 
 const userSchema = new Schema({
-	children: [Project, Bid],
+	
 	username: {
 		type: String,
 		required: true,
@@ -18,7 +18,7 @@ const userSchema = new Schema({
 	user_type: {
 		type: String,
 		required: true,
-		enum: ["client", "mechanic"]
+		enum: ["poster", "mechanic"]
 	},
 	email: {
 		type: String,
@@ -41,5 +41,17 @@ const userSchema = new Schema({
 		year: { type: Number },
 		fuel: { type: String },
 		license: { type: String }
+	},
+	project: {
+		type: Schema.Types.ObjectId,
+		ref: "Project"
+	},
+	bid: {
+		type: Schema.Types.ObjectId,
+		ref: "Bid"
 	}
-})
+});
+
+const Poster = mongoose.model("Poster", bidSchema);
+
+module.exports = Poster;
