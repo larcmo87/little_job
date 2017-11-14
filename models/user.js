@@ -40,14 +40,14 @@ const userSchema = new Schema({
 		fuel: { type: String },
 		license: { type: String }
 	},
-	project: {
+	project: [{
 		type: Schema.Types.ObjectId,
 		ref: "Project"
-	},
-	bid: {
+	}],
+	bid: [{
 		type: Schema.Types.ObjectId,
 		ref: "Bid"
-	}
+	}]
 });
 
 const User = mongoose.model("User", userSchema);
