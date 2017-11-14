@@ -4,11 +4,11 @@ import {  BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
 import Button  from '../../components/Button'
-
+import CSS from "./PosterCSS.css";
 
 const DAY_FORMAT = 'YYYYMMDD';
 
-class Type extends Component {
+class Poster extends Component {
 	
 	// state = {
 	//     nytArticles: [],
@@ -94,19 +94,76 @@ class Type extends Component {
 					<div className="col-sm-8 col-md-8 col-lg-8">
 						<Panel>
 						  <PanelHeading 
-						  	title="User Type"
+						  	title="Poster"
 						  	/>
 						  <PanelBody>
-						  	 <Link to={"/mechanic"}>
-						  	 	Mechanic (Bidder)
-						  	 </Link>
+						  	<Form>
+						  		<FormLabel
+						  		  for="user-id"
+						  		  text="User ID"
+						  		/>								  		
+						  		<Input
+						  		   type="text"
+						  		   id="user-id"
+						  		/>
+						  		<FormLabel
+						  		  for="user-password"
+						  		  text="Password"
+						  		/>
+						  		<Input
+						  		   type="password"
+						  		   id="user-password"
+						  		/>
+						  		<FormLabel
+						  		  for="name"
+						  		  text="Name"
+						  		/>								  		
+						  		<Input
+						  		   type="text"
+						  		   id="name"
+						  		/>
+						  		<FormLabel
+						  		  for="email"
+						  		  text="Email"
+						  		/>
+						  		<Input
+						  		   type="email"
+						  		   id="email"
+						  		/>
+						  		<FormLabel
+						  		  for="city"
+						  		  text="City"
+						  		/>								  		
+						  		<Input
+						  		   type="text"
+						  		   id="city"
+						  		/>
+						  		<FormLabel
+						  		  for="state"
+						  		  text="State"
+						  		/>
+						  		<Input
+						  		   type="text"
+						  		   id="state"
+						  		/>
+						  		<FormLabel
+						  		  for="zip"
+						  		  text="Zip Code"
+						  		/>
+						  		<Input
+						  		   type="text"
+						  		   id="zip"
+						  		/>						  		
+						  		
+						  		<Submit 
+						  			id="login-submit"
+						  			text="Submit"
+						  		/>
+
+						  	</Form>
+
 						  </PanelBody>
-						  <PanelBody>
-						  	 <Link to={"/poster"}>
-						  	 	Poster (Request Bids)
-						  	 </Link>
-						  </PanelBody>
-						</Panel>						
+						</Panel>													
 						
 					</div>					
 					<div className="col-sm-2 col-md-2 col-lg-2">
@@ -118,4 +175,4 @@ class Type extends Component {
 	}
 }
  
-export default Type;
+export default Poster;
