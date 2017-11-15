@@ -17,14 +17,18 @@ export default {
       });
   },
 
-  // Gets all Articles
-  getArticles: function() {
-    return axios.get("/api/articles");
+  // Gets all Active Projects
+  getProjects: function() {
+    return axios.get("/api/project");
+  },
+
+  getUserProjects: function(id){
+    return axios.get("/api/user/" + id);
   },
  
   // Deletes the Articles with the given id
-  deleteArticle: function(id) {
-    return axios.delete("/api/articles/" + id);
+  deleteUser: function(id) {
+    return axios.delete("/api/user/" + id);
   },
   // Saves a Article to the database
   saveArticle: function(articleData) {
