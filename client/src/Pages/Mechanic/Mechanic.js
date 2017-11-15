@@ -1,26 +1,29 @@
 import { Form, Input, FormLabel, Submit } from "../../components/Form";
-import { Redirect } from 'react-router';
-
 import React, { Component } from 'react';
 import {  BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
 import Button  from '../../components/Button'
 import CSS from "./MechanicCSS.css";
-
+import { FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 
 const DAY_FORMAT = 'YYYYMMDD';
 
 class Mechanic extends Component {
 	
-	state = {
-	    redirect: ""
+	// state = {
+	//     nytArticles: [],
+	//     mongoArticles: [],
+	//     query: "",
+	//     topic: "",
+	//     beginDT: "19500101",
+	//     endDT: moment(Date.now()).format(DAY_FORMAT)
 	   
-  	};
+ //  	};
 
-  	componentDidMount() {
-   		
-  	}
+ //  	componentDidMount() {
+   
+ //  	}
 
 	// searchNYT = (query, beginDt, endDt) => {
 	// 	this.setState({
@@ -82,23 +85,10 @@ class Mechanic extends Component {
 	//   };
 
 
-
-	serchpage = event => {
-		 event.preventDefault();
-		 console.log("In serchpage");
-		  this.setState({redirect: true});
-	};
-
-
 	render() {
-		  if (this.state.redirect) {
-		    return <Redirect push to="/login" />;
-		  }
-
+		  
 		return (
-
 			<div className="login">
-				
 				<div className="row">
 					<div className="col-sm-2 col-md-2 col-lg-2">
 					</div>
@@ -108,9 +98,9 @@ class Mechanic extends Component {
 						  	title="Mechanic"
 						  	/>
 						  <PanelBody>
-						  	<Form onSubmit={this.serchpage}>
+						  	<Form>
 						  		<FormLabel
-						  		  
+						  		  for="user-id"
 						  		  text="User ID"
 						  		/>								  		
 						  		<Input
@@ -118,7 +108,7 @@ class Mechanic extends Component {
 						  		   id="user-id"
 						  		/>
 						  		<FormLabel
-						  		  
+						  		  for="user-password"
 						  		  text="Password"
 						  		/>
 						  		<Input
@@ -126,6 +116,7 @@ class Mechanic extends Component {
 						  		   id="user-password"
 						  		/>
 						  		<FormLabel
+						  		  for="name"
 						  		  text="Name"
 						  		/>								  		
 						  		<Input
@@ -133,7 +124,7 @@ class Mechanic extends Component {
 						  		   id="name"
 						  		/>
 						  		<FormLabel
-						  		  
+						  		  for="email"
 						  		  text="Email"
 						  		/>
 						  		<Input
@@ -141,38 +132,87 @@ class Mechanic extends Component {
 						  		   id="email"
 						  		/>
 						  		<FormLabel
-						  		  
+						  		  for="city"
 						  		  text="City"
 						  		/>								  		
 						  		<Input
-						  		   type="text"
-						  		   id="city"
+						  		  type="text"
+						  		  id="city"
 						  		/>
+								<FormLabel
+								  for="state"
+								  text="State"
+								/>
+								  <FormGroup controlId="formControlsSelect">
+      								<ControlLabel></ControlLabel>
+      								<FormControl componentClass="select" placeholder="State">
+									<option value="">---</option>
+  									<option value="AL">Alabama</option>
+  									<option value="AK">Alaska</option>
+ 									<option value="AZ">Arizona</option>
+  									<option value="AR">Arkansas</option>
+  									<option value="CA">California</option>
+  									<option value="CO">Colorado</option>
+  									<option value="CT">Connecticut</option>
+  									<option value="DE">Delaware</option>
+  									<option value="DC">District Of Columbia</option>
+  									<option value="FL">Florida</option>
+  									<option value="GA">Georgia</option>
+  									<option value="HI">Hawaii</option>
+  									<option value="ID">Idaho</option>
+  									<option value="IL">Illinois</option>
+  									<option value="IN">Indiana</option>
+  									<option value="IA">Iowa</option>
+ 									<option value="KS">Kansas</option>
+  									<option value="KY">Kentucky</option>
+  									<option value="LA">Louisiana</option>
+  									<option value="ME">Maine</option>
+  									<option value="MD">Maryland</option>
+  									<option value="MA">Massachusetts</option>
+  									<option value="MI">Michigan</option>
+  									<option value="MN">Minnesota</option>
+  									<option value="MS">Mississippi</option>
+ 									<option value="MO">Missouri</option>
+  									<option value="MT">Montana</option>
+  									<option value="NE">Nebraska</option>
+  									<option value="NV">Nevada</option>
+  									<option value="NH">New Hampshire</option>
+  									<option value="NJ">New Jersey</option>
+  									<option value="NM">New Mexico</option>
+  									<option value="NY">New York</option>
+  									<option value="NC">North Carolina</option>
+  									<option value="ND">North Dakota</option>
+  									<option value="OH">Ohio</option>
+  									<option value="OK">Oklahoma</option>
+  									<option value="OR">Oregon</option>
+  									<option value="PA">Pennsylvania</option>
+  									<option value="RI">Rhode Island</option>
+  									<option value="SC">South Carolina</option>
+  									<option value="SD">South Dakota</option>
+  									<option value="TN">Tennessee</option>
+  									<option value="TX">Texas</option>
+  									<option value="UT">Utah</option>
+  									<option value="VT">Vermont</option>
+  									<option value="VA">Virginia</option>
+  									<option value="WA">Washington</option>
+  									<option value="WV">West Virginia</option>
+  									<option value="WI">Wisconsin</option>
+  									<option value="WY">Wyoming</option>
+      							</FormControl>
+    							</FormGroup>
 						  		<FormLabel
-						  		  
-						  		  text="State"
-						  		/>
-						  		<Input
-						  		   type="text"
-						  		   id="state"
-						  		/>
-						  		<FormLabel
-						  		 
+						  		  for="zip"
 						  		  text="Zip Code"
 						  		/>
 						  		<Input
 						  		   type="text"
 						  		   id="zip"
-						  		/>		
-						  		
+						  		/>
+
 						  		<Submit 
 						  			id="login-submit"
 						  			text="Submit"
-						  			
-			   			 			onClick={this.serchpage}
-
 						  		/>
-
 						  	</Form>
 
 						  </PanelBody>

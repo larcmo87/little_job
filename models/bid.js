@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const bidSchema = new Schema({
-	
+	_id: {
+		type: Objectid,
+		required: true
+	},
 	provider:{
 		type: String,
 		required: true

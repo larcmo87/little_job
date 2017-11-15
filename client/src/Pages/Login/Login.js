@@ -1,21 +1,15 @@
 import { Form, Input, FormLabel, Submit } from "../../components/Form";
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
-import {  BrowserRouter as Router, Route, Switch, Link, findDOMNode  } from "react-router-dom";
+import {  BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
 import Button  from '../../components/Button'
 import Type  from '../../components/Button'
 
 
-
 const DAY_FORMAT = 'YYYYMMDD';
 
 class Login extends Component {
-	state = {
-	    redirect: false
-	   
-  	};
 	
 	// state = {
 	//     nytArticles: [],
@@ -90,64 +84,11 @@ class Login extends Component {
 	//    }
 	//   };
 
-	
-	redirectToPoster = event => {
-		 event.preventDefault();
-		 console.log("In serchpage");
-		  this.setState({redirect: "/poster"});
-	};
-
-	redirectToMechanic = event => {
-		 event.preventDefault();
-		 console.log("In serchpage");
-		  this.setState({redirect: "/mechanic"});
-	};
-
-
 
 	render() {
-			if (this.state.redirect === "/mechanic") {
-    			return <Redirect push to={this.state.redirect} />;
-  			}
-
-  			if (this.state.redirect === "/poster") {
-    			return <Redirect push to={this.state.redirect} />;
-  			}
 		  
 		return (
 			<div className="login">
-						
-						<div className="modal fade" id="userTypeModal" tabIndex="-1" role="dialog" aria-labelledby="userTypeModalLabel" aria-hidden="true">
-						  <div className="modal-dialog" role="document">
-						    <div className="modal-content">						     
-						      <div className="modal-body">
-						      	<button type="button" className="close" data-dismiss="modal" aria-label="Close">
-						         	<span aria-hidden="false" >&times;</span>
-						       	 </button>
-						      	<Panel>
-								  <PanelHeading 
-								  	title="Account Type"
-								  	/>
-								  
-								  <PanelBody>
-								  	<div className="user-types" id="user-mechanic">								  		
-						          		<button type="button" className="btn btn-info btn-user-type" data-dismiss="modal" onClick={this.redirectToPoster}>Poster (Post Job)</button>						          		
-						         	 </div>
-						          	<div className="user-types" id="user-poster">
-						        		<button type="button" className="btn btn-info btn-user-type" data-dismiss="modal" onClick={this.redirectToMechanic}>Mechanic (Bid on Job)</button>
-						        	</div>
-						         </PanelBody>
-						        	
-						        </Panel>
-						        <button type="button" className="btn btn-primary btn-cancel" data-dismiss="modal" >
-					         		Cancel
-					       	 	</button>
-						      </div>					      
-						    </div>
-						  </div>
-						</div>{/*End of Modal Component*/}
-						
-
 				<div className="row">
 					<div className="col-sm-2 col-md-2 col-lg-2">
 					</div>
@@ -165,14 +106,12 @@ class Login extends Component {
 								/>
 							</div>
 							<div className="col-sm-2 col-md-2 col-lg-2">		
-								<Link to={"/search"}>
-									<Button
-										type="button"
-										text="Search"
-										id="location-search-btn"
-										className="btn btn-info btn-sm"										  	
-									/>	
-								</Link>								
+								<Button
+									type="button"
+									text="Search"
+									id="location-search-btn"
+									class="btn btn-info btn-sm"										  	
+								/>									
 							</div>	
 							
 						</div>{/*end of row class}*/}							
@@ -185,7 +124,7 @@ class Login extends Component {
 								  <PanelBody>
 								  	<Form>
 								  		<FormLabel
-								  		 
+								  		  for="user-id"
 								  		  text="User ID"
 								  		/>								  		
 								  		<Input
@@ -193,7 +132,7 @@ class Login extends Component {
 								  		   id="user-id"
 								  		/>
 								  		<FormLabel
-								  		 
+								  		  for="user-password"
 								  		  text="Password"
 								  		/>
 								  		<Input
@@ -214,16 +153,14 @@ class Login extends Component {
 									  	title="Create Account"
 									  	/>
 								  	<PanelBody id="create-account-pnl-body">
-								  		 {/*<Link to={"/type"}>*/}
+								  		 <Link to={"/type"}>
 								  		<Button
-								  			data-toggle="modal" 
-								  			data-target="#userTypeModal"
 											type="button"
 										  	text="Create"
 										  	id="create-account-btn"
-										  	className="btn btn-info btn-sm"										  	
+										  	class="btn btn-info btn-sm"										  	
 										/>
-										{/*</Link>*/}
+										</Link>
 								  </PanelBody>
 								</Panel>
 							</div>
