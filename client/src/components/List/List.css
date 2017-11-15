@@ -1,4 +1,4 @@
-/*.list-overflow-container {
+.list-overflow-container {
    max-height: 564px;
   border: 1px #DDDDDD solid;
   border-radius: 4px;
@@ -32,9 +32,4 @@
 
 .list-overflow-container li:last-child {
   border-bottom: none;
-}
-*/
-
-.list-group-item{
-  min-height: 70px;
 }

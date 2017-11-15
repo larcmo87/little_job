@@ -5,8 +5,8 @@ import React from "react";
 // That way we don't have to define them all individually
 export const PanelHeading = props => 
    <div className="panel panel-default">
-    	<div className = "panel-heading">
-		      <h3 className = "panel-title">
+    	<div class = "panel-heading">
+		      <h3 class = "panel-title">
 		         {props.title}
 		      </h3>  
 		</div> 			
