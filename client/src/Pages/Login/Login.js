@@ -154,7 +154,7 @@ class Login extends Component {
 					<div className="col-sm-8 col-md-8 col-lg-8">													
 						<div className="row">
 							<div className="col-sm-2 col-md-2 col-lg-2">																		
-								<label id="search-location-lbl">Work Ads:</label>
+								<label id="search-location-lbl"> Ads:</label>
 							</div>
 							<div className="col-sm-8 col-md-8 col-lg-8">		
 								<Input
