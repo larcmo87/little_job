@@ -130,7 +130,6 @@ class Mechanic extends Component {
 						  		<Input
 						  		   type="email"
 						  		   id="email"
-								   placeholder="johndoe@email.com"
 						  		/>
 						  		<FormLabel
 						  		  for="city"
@@ -208,7 +207,6 @@ class Mechanic extends Component {
 						  		<Input
 						  		   type="text"
 						  		   id="zip"
-								   placeholder="12345"
 						  		/>
 								<FormLabel
 								  for="qualifications"
