@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Bid = require("./bid.js");
 
 const projectSchema = new Schema({
 	
@@ -9,7 +8,7 @@ const projectSchema = new Schema({
 		type: String,
 		required: true
 	},
-	description: { type: String },
+	description: { type: String, required: true },
 	start_price: { type: Number, required: true },
 	status: {
 		type: String,
