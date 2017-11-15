@@ -130,6 +130,7 @@ class Mechanic extends Component {
 						  		<Input
 						  		   type="email"
 						  		   id="email"
+								   placeholder="johndoe@email.com"
 						  		/>
 						  		<FormLabel
 						  		  for="city"
@@ -146,7 +147,7 @@ class Mechanic extends Component {
 								  <FormGroup controlId="formControlsSelect">
       								<ControlLabel></ControlLabel>
       								<FormControl componentClass="select" placeholder="State">
-									<option value="">---</option>
+									<option value="">select one</option>
   									<option value="AL">Alabama</option>
   									<option value="AK">Alaska</option>
  									<option value="AZ">Arizona</option>
@@ -207,7 +208,16 @@ class Mechanic extends Component {
 						  		<Input
 						  		   type="text"
 						  		   id="zip"
+								   placeholder="12345"
 						  		/>
+								<FormLabel
+								  for="qualifications"
+								  text="Qualifications"
+								/>
+								<FormGroup controlId="formControlsTextarea">
+      							<ControlLabel></ControlLabel>
+      							<FormControl componentClass="textarea" placeholder="Enter text here" />
+    							</FormGroup>
 
 						  		<Submit 
 						  			id="login-submit"
