@@ -124,7 +124,7 @@ class Login extends Component {
 									type="button"
 									text="Search"
 									id="location-search-btn"
-									className="btn btn-info btn-lg"										  	
+									className="btn btn-info btn-sm"										  	
 								/>									
 							</div>	
 							

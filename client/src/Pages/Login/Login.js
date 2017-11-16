@@ -3,10 +3,9 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import {  BrowserRouter as Router, Route, Switch, Link, findDOMNode  } from "react-router-dom";
 import API from '../../utils/API';
-import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
-import Button  from '../../components/Button'
-import Type  from '../../components/Button'
-
+import { Panel, PanelHeading, PanelBody } from '../../components/Panel';
+import Button  from '../../components/Button';
+import Type  from '../../components/Button';
 
 
 const DAY_FORMAT = 'YYYYMMDD';
@@ -84,7 +83,7 @@ class Login extends Component {
 							<div className="col-sm-2 col-md-2 col-lg-2">																		
 								<label id="search-location-lbl">Work Ads:</label>
 							</div>
-							<div className="col-sm-8 col-md-8 col-lg-8">		
+							<div className="col-sm-8 col-md-8 col-lg-8" id="search-location-input-div">		
 								<Input
 									className="search"
 									type="text"
