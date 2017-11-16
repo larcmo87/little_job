@@ -17,21 +17,22 @@ export default {
       });
   },
 
-  // Gets all Active Projects
-  getProjects: function() {
+  // Gets all Articles
+  getJobPostings: function() {
     return axios.get("/api/project");
-  },
-
-  getUserProjects: function(id){
-    return axios.get("/api/user/" + id);
   },
  
   // Deletes the Articles with the given id
-  deleteUser: function(id) {
-    return axios.delete("/api/user/" + id);
+  deleteArticle: function(id) {
+    return axios.delete("/api/articles/" + id);
   },
   // Saves a Article to the database
-  saveArticle: function(articleData) {
-    return axios.post("/api/articles", articleData);
+  saveUser: function(userData) {
+    console.log(userData);
+    return axios.post("/api/user", userData);
+  },
+  getAllPostsByLocation: function(location) {
+    console.log(location);
+    return axios.post("/api/search", location);
   }
 };
