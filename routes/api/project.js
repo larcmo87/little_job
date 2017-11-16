@@ -7,10 +7,12 @@ router.route("/project")
   .post(projectsController.create);
 
 // Matches with "/api/project/:id"
-router
-  .route("/project/:id")
+router.route("/project/:id")
   .get(projectsController.findById)
   .put(projectsController.update)
   .delete(projectsController.remove);
+
+  // router.route("/project/:location")
+  // .get(projectsController.findByLocation);
 
 module.exports = router;

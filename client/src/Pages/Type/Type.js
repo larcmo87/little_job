@@ -101,6 +101,11 @@ class Type extends Component {
 						  	 	Mechanic (Bidder)
 						  	 </Link>
 						  </PanelBody>
+						  <PanelBody>
+						  	 <Link to={"/poster"}>
+						  	 	Poster (Request Bids)
+						  	 </Link>
+						  </PanelBody>
 						</Panel>						
 						
 					</div>					

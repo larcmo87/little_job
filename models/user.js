@@ -1,14 +1,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Bid = require("./bid.js");
-const Project = require("./project.js");
 
 const userSchema = new Schema({
-	children: [Project, Bid],
-	username: {
+	userId:{
 		type: String,
 		required: true,
-		unique: true
+		unique: true	
+	},
+	username: {
+		type: String,
+		required: true,		
 	},
 	password: {
 		type: String,
@@ -18,7 +19,7 @@ const userSchema = new Schema({
 	user_type: {
 		type: String,
 		required: true,
-		enum: ["client", "mechanic"]
+		enum: ["poster", "mechanic"]
 	},
 	email: {
 		type: String,
@@ -29,17 +30,28 @@ const userSchema = new Schema({
 	},
 	phone_number: { type: String },
 	credentials: { type: String },
-	location: {
-		city: { type: String },
-		state: { type: String },
-		address: { type: String },
-		zip: { type: String }
-	}
-	car: {
-		make: { type: String },
-		model: { type: String },
-		year: { type: Number },
-		fuel: { type: String },
-		license: { type: String }
-	}
-})
+	address: { type: String },
+	city: { type: String },
+	state: { type: String },	
+	zip: { type: String },
+	
+	// car: {
+	// 	make: { type: String },
+	// 	model: { type: String },
+	// 	year: { type: Number },
+	// 	fuel: { type: String },
+	// 	license: { type: String }
+	// },
+	project: [{
+		type: Schema.Types.ObjectId,
+		ref: "Project"
+	}],
+	bid: [{
+		type: Schema.Types.ObjectId,
+		ref: "Bid"
+	}]
+});
+
+const User = mongoose.model("User", userSchema);
+
+module.exports = User;
