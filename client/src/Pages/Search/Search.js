@@ -22,84 +22,13 @@ class Login extends Component {
 		console.log("in did mount of serch");
    		this.getJobPostings();
     }
-	// state = {
-	//     nytArticles: [],
-	//     mongoArticles: [],
-	//     query: "",
-	//     topic: "",
-	//     beginDT: "19500101",
-	//     endDT: moment(Date.now()).format(DAY_FORMAT)
-	   
- //  	};
-
- //  	componentDidMount() {
-   
- //  	}
-
-	// searchNYT = (query, beginDt, endDt) => {
-	// 	this.setState({
-	// 		nytArticles: []
-	// 	});
-
-	// 	API.getNYTArcitle(query, beginDt, endDt)
-	// 	.then(res => {
-	// 		this.setState({
-	// 			nytArticles: res.data.response.docs,
-	// 			query: "",
-
-	// 			topic: "",
-	// 			beginDT: "19500101",
-	// 			endDT: moment(Date.now()).format(DAY_FORMAT)
-	// 		})
-
-
-	// 		let searchResult = this.state.nytArticles;
-	// 		console.log(JSON.stringify(searchResult, null, 2));
-	// 		console.log("search result lenght = " + this.state.nytArticles.length);
-	// 	})	
-	// 	.catch(err => console.log(err));
-
-			
-		
-		
-	// };
-	//  handleStartDayChange = (beginDT) => {
-	//  	beginDT = moment(beginDT).format(DAY_FORMAT)
-	//  	console.log()
-	//     this.setState({
-	//       beginDT
-	//     });
-	//   };
-
-	// handleEndDayChange  = (endDT) => {
-	//  	endDT = moment(endDT).format(DAY_FORMAT)
-	//  	console.log()
-	//     this.setState({
-	//       endDT
-	//     });
-	//   }; 
-
-	// handleInputChange = event =>{
-	// 	const { name, value } = event.target;
-	// 	console.log("event target = " + event.target);
-	//     this.setState({
-	//     	[name]: value
- //    	});
-	// };
 	
-	//   handleFormSubmit = event => {
-	//   	event.preventDefault();
-	//   	if (this.state.topic && this.state.beginDT && this.state.endDT) {
-	//   		this.searchNYT(this.state.topic, this.state.beginDT, this.state.endDT);
-	//    		console.log("states = " + JSON.stringify(this.state, null, 2));
-	//    }
-	//   };
  	getJobPostings = () =>{
 
  		API.getJobPostings()
  		.then(res =>{
  			this.setState({posts: res.data})
- 				console.log("All Postings " + res.data);
+ 				console.log("All Postings " + JSON.stringify(res.data));
  		})
  		.catch(err => console.log(err));
  	};

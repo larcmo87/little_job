@@ -83,7 +83,7 @@ class Poster extends Component {
 						  		/>
 						  		<FormLabel
 						  		  
-						  		  text="Password"
+						  		  text="Bid Amount"
 						  		/>
 						  		<Input
 						  			value={this.state.start_price} 
