@@ -2,6 +2,11 @@
 .topnav {
     background-color: #333;
     overflow: hidden;
+    margin-top: 52px;
+    width: 100%;
+    margin-left:0;
+    opacity: .6;
+
 }
 
 /* Style the links inside the navigation bar */
@@ -23,7 +28,8 @@
 
 /* Add an active class to highlight the current page */
 .active {
-    background-color: #4CAF50;
+    /*background-color: #4CAF50;*/
+    background-color: ;
     color: white;
 }
 
