@@ -302,7 +302,15 @@ class Mechanic extends Component {
 					  			   name="zip"
 						  		   type="text"
 						  		   id="zip"
-						  		/>		
+						  		/>
+								<FormLabel
+								  for="qualifications"
+								  text="Qualifications"
+								/>
+								<FormGroup controlId="formControlsTextarea">
+      							<ControlLabel></ControlLabel>
+      							<FormControl componentClass="textarea" placeholder="Enter text here" />
+    							</FormGroup>
 						  		
 						  		<Submit 
 						  			id="login-submit"
