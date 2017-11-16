@@ -8,3 +8,8 @@
 #login-submit{
 	float:right;
 }
+
+#search-location {
+	height: 2.5em;
+	text-indent: 10px;
+}
