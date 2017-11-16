@@ -3,10 +3,7 @@ const Schema = mongoose.Schema;
 const Bid = require("./bid.js");
 
 const projectSchema = new Schema({
-	_id: {
-		type: Objectid,
-		required: true
-	},
+	
 	// this is the user who posts a project
 	client: {
 		type: String,
@@ -18,10 +15,13 @@ const projectSchema = new Schema({
 		type: String,
 		required: true,
 		enum: ["active", "complete"],
-		default: "active";
+		default: "active"
 	},
-	// bid is a child of the project
-	bid: [Bid]
+	// bid is a child of the project	
+	bid: {
+		type: Schema.Types.ObjectId,
+		ref: "Bid"
+	}
 });
 
 const Project = mongoose.model("Project", projectSchema);

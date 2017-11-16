@@ -18,8 +18,8 @@ export default {
   },
 
   // Gets all Articles
-  getArticles: function() {
-    return axios.get("/api/articles");
+  getJobPostings: function() {
+    return axios.get("/api/project");
   },
  
   // Deletes the Articles with the given id
@@ -27,7 +27,12 @@ export default {
     return axios.delete("/api/articles/" + id);
   },
   // Saves a Article to the database
-  saveArticle: function(articleData) {
-    return axios.post("/api/articles", articleData);
+  saveUser: function(userData) {
+    console.log(userData);
+    return axios.post("/api/user", userData);
+  },
+  getAllPostsByLocation: function(location) {
+    console.log(location);
+    return axios.post("/api/search", location);
   }
 };
