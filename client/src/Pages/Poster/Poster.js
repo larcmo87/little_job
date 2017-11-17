@@ -53,7 +53,7 @@ class Poster extends Component {
 			.then(res => {
 				localStorage.setItem('myData', this.state.userId);
 				this.setState({	 
-					redirect:"/createpost",   
+					redirect:"/successful",   
 	    			userId: "",
 	    			username: "",
 					password: "",
@@ -68,15 +68,15 @@ class Poster extends Component {
 				});
 				
 
-				this.redirectToCreatePost
+				this.redirectToSuccessful
 			})
 			.catch(err => console.log(err));
 	};
 
-	redirectToCreatePost = event => {
+	redirectToSuccessful = event => {
 		 event.preventDefault();
 		 console.log("In serchpage");
-		  this.setState({redirect: "/createpost"});
+		  this.setState({redirect: "/successful"});
 	};
 	 
 	handleInputChange = event =>{
@@ -102,7 +102,7 @@ class Poster extends Component {
 
 	render() {
 		  
-  			if (this.state.redirect === "/createpost") {
+  			if (this.state.redirect === "/successful") {
     			return <Redirect push to={this.state.redirect} data-id={this.state.userId}/>;
   			}
 		return (

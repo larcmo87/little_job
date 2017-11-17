@@ -8,7 +8,7 @@ const bidSchema = new Schema({
 		required: true
 	},
 	price: { type: Number },
-	notes: { type: String }
+	time: { type: String }
 });
 
 const Bid = mongoose.model("Bid", bidSchema);

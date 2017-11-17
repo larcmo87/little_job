@@ -6,6 +6,7 @@ import Type from "./Pages/Type";
 import Mechanic from "./Pages/Mechanic";
 import Poster from "./Pages/Poster";
 import CreatePost from "./Pages/CreatePost";
+import Successful from "./Pages/Successful";
 
 
 
@@ -22,6 +23,7 @@ const Main = () =>
          <Route exact path="/mechanic" component={Mechanic} /> 
          <Route exact path="/poster" component={Poster} /> 
          <Route exact path="/createpost" component={CreatePost} /> 
+         <Route exact path="/successful" component={Successful} /> 
       </Switch>
     </div>
   </Router>;
