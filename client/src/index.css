@@ -89,3 +89,25 @@ body {
   float:right;
 }
 
+/*text area control on the CreatePost page*/
+#job-detail{
+  height:100px;
+  resize:none;
+}
+/*Input control for bid on the CreatePost page*/
+#bid-price{
+  width: 200px;
+  margin:0;
+  display:block;
+  padding: 0;
+
+}
+
+.form-label{
+  float:left;
+  display:inline-block;
+  padding-left:0;
+  text-align: left;
+  width:100%;
+  margin-left:0;
+}

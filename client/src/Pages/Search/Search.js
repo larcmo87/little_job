@@ -136,7 +136,7 @@ class Login extends Component {
 		                			{this.state.posts.map(post => (
 		                				
 		                				 <ListItem key={post._id}>
-		                				 	<div className="job-posting-title">Job Posted by: {post.client} - Starting Bid Amount: ${post.start_price}</div>
+		                				 	<div className="job-posting-title">Job Posted by: {post.project[0]} - Starting Bid Amount: ${post.start_price}</div>
 		                				   <div className="job-posting-detail">  
 
 		                					<strong>

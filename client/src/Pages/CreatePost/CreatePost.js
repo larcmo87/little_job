@@ -66,32 +66,37 @@ class Poster extends Component {
 					<div className="col-sm-8 col-md-8 col-lg-8">
 						<Panel>
 						  <PanelHeading 
-						  	title="Poster"
+						  	title="Job Posting"
 						  	/>
 						  <PanelBody>
 						  	<Form>
 						  		<FormLabel
 						  		  
 						  		  text="Job Detail"
-						  		/>								  		
-						  		<Input
-						  		   value={this.state.description} 
-						  		   name="job-detail"
-						  		   type="textArea"
+						  		/>	
+						  		<FormGroup controlId="formControlsTextarea">
+      							
+      							<FormControl 
+      								componentClass="textarea" 
+      								placeholder="Enter text here" 
+      								value={this.state.description} 
+						  		   name="description"						  		   
 						  		   id="job-detail"
-						  		   onChange={this.handleInputChange} 
-						  		/>
-						  		<FormLabel
-						  		  
+						  		   onChange={this.handleInputChange} />
+    							</FormGroup>							  		
+						  		
+						  		<FormLabel						  		  
 						  		  text="Bid Amount"
 						  		/>
+						  		
 						  		<Input
 						  			value={this.state.start_price} 
 						  			onChange={this.handleInputChange}
-						  			name="bid-price"
-						  		   type="text"
+						  			name="start_price"
+						  		   type="number"
 						  		   id="bid-price"
-						  		/>						  			
+						  		/>	
+						  						  			
 						  		
 						  		<Submit 
 						  			id="login-submit"
