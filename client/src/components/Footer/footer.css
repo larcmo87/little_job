@@ -1,0 +1,33 @@
+
+#picture-container:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 500;
+    width: 100%;
+    height: 180px;
+    z-index: 0;
+    opacity: 0.4;
+    background-image: url('discstrans.jpg');
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+.footer-links {
+	font-size: 20pt;
+	color: rgba(0, 0, 0 , 1);
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+}
+
+ul {
+	list-style: none;
+}
