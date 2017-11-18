@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Jumbotron from './components/jumbotron';
 import Main from './Main';
+import Footer from './components/Footer';
 
 
 const App = () =>{
@@ -13,6 +14,8 @@ const App = () =>{
         <div className="container-fluid">         
           <Main />
         </div> {/* end overall container */}
+
+ 	<Footer/>
   </div>
   )
 

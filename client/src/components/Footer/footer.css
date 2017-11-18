@@ -1,0 +1,22 @@
+
+.page-footer > .row{
+	height:300px;
+	background-image: url(discs.jpg);
+	background-image:no-repeat;
+	background-size: cover;
+	padding: 20px;
+}
+
+
+.column {
+    float: left;
+    width: 33.33%;
+}
+a {
+	color: black;
+	font-size: 20pt;
+}
+
+ul {
+	list-style: none;
+}
