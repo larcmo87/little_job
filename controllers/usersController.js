@@ -9,6 +9,13 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  findByLogin: function(req, res) {
+    console.log("testing findByLogin... req: " + req);
+    db.User
+      .findOne({"username":req.body.username, "password":req.body.password})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   findById: function(req, res) {
     db.User
       .findById(req.params.id)

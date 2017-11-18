@@ -30,8 +30,7 @@ class Poster extends Component {
 
 	   
   	};
-
-
+  	// CREATE
   	addPoster = () => {
 		
 		console.log(this.state.userInfo);
@@ -72,13 +71,13 @@ class Poster extends Component {
 			})
 			.catch(err => console.log(err));
 	};
-
+	// redirected to a login page
 	redirectToSuccessful = event => {
 		 event.preventDefault();
-		 console.log("In serchpage");
+		 console.log("In searchpage");
 		  this.setState({redirect: "/successful"});
 	};
-	 
+	//============================================
 	handleInputChange = event =>{
 		const { name, value } = event.target;
 		console.log("event target = " + name);
@@ -89,7 +88,7 @@ class Poster extends Component {
     	console.log
 	};
 
-     handleFormSubmit = event => {
+    handleFormSubmit = event => {
 	  	event.preventDefault();
 	  	// if (this.state.topic && this.state.beginDT && this.state.endDT) {
 	  		this.addPoster(this.state.userId, this.state.username, this.state.password,this.state.user_type,
@@ -97,7 +96,7 @@ class Poster extends Component {
 	   		console.log("states = " + JSON.stringify(this.state, null, 2));
 	   // }
 	   
-	  };
+	};
 
 
 	render() {
