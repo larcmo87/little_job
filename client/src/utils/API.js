@@ -19,9 +19,9 @@ export default {
     console.log(userData);
     return axios.post("/api/user", userData);
   },
-  getUserByLogin: function(userData) {
-    console.log(userData);
-    return axios.get("/api/login", userData);
+  getUserByLogin: function(userId, password) {
+    console.log("Get user id: " + userId + "\npassword: " + password);
+    return axios.get("/api/user/" + userId + password);
   },
   getAllPostsByLocation: function(location) {
     console.log(location);
