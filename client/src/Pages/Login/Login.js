@@ -12,32 +12,64 @@ const DAY_FORMAT = 'YYYYMMDD';
 
 class Login extends Component {
 	state = {
-	    redirect: ""
-	   
+	    userId: "",
+	    password: "",
+	    redirect: "" 
   	};
-	
-	
-	
-	redirectToPoster = event => {
-		 event.preventDefault();
-		 console.log("In serchpage");
-		  this.setState({redirect: "/poster"});
+
+	// LOGIN get route = "api/login"
+	getUserByLogin = () => {
+		API.getUserByLogin({
+			userId: this.state.userId,
+			password: this.state.password
+
+		})
+		.then(res => {
+			localStorage.setItem('loginData', this.state.userId);
+			this.setState({
+				userId: "",
+				password: ""
+			});
+
+			this.redirectToPoster;
+		})
+		.catch(err => console.log(err));
 	};
 
+	// goes to "/poster-dashboard"
+	redirectToPoster = event => {
+		 event.preventDefault();
+		 console.log("In searchpage");
+		  this.setState({redirect: "/poster-dashboard"});
+	};
+	// goes to "/mechanic-dashboard"
 	redirectToMechanic = event => {
 		 event.preventDefault();
 		 console.log("In serchpage");
-		  this.setState({redirect: "/mechanic"});
+		  this.setState({redirect: "/mechanic-dashboard"});
+	};
+	//===========================================
+	handleInputChange = event =>{
+		const { name, value } = event.target;
+		console.log("event target = " + name);
+	    this.setState({
+	    	[name]: value
+    	});
+	};
+
+    handleFormSubmit = event => {
+	  	event.preventDefault();
+	  	// if (this.state.topic && this.state.beginDT && this.state.endDT) {
+	  		this.getUserByLogin(this.state.userId, this.state.password);  
 	};
 
 
-
 	render() {
-			if (this.state.redirect === "/mechanic") {
+			if (this.state.redirect === "/mechanic-dashboard") {
     			return <Redirect push to={this.state.redirect} />;
   			}
 
-  			if (this.state.redirect === "/poster") {
+  			if (this.state.redirect === "/poster-dashboard") {
     			return <Redirect push to={this.state.redirect} />;
   			}
 		  
@@ -116,20 +148,27 @@ class Login extends Component {
 								  		  text="User ID"
 								  		/>								  		
 								  		<Input
+								  		   value={this.state.userId}
 								  		   type="text"
 								  		   id="user-id"
+								  		   name="userId"
+								  		   onChange={this.handleInputChange}
 								  		/>
 								  		<FormLabel
 								  		 
 								  		  text="Password"
 								  		/>
 								  		<Input
+								  		   value={this.state.password}
 								  		   type="password"
 								  		   id="user-password"
+								  		   name="password"
+								  		   onChange={this.handleInputChange}
 								  		/>
 								  		<Submit 
 								  			id="login-submit"
 								  			text="Log In"
+								  			onClick={this.handleFormSubmit}
 								  		/>
 								  	</Form>
 								  </PanelBody>

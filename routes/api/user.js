@@ -10,6 +10,7 @@ router.route("/user")
 router
   .route("/user/:id")
   .get(usersController.findById)
+  .get(usersController.findByLogin)
   .put(usersController.update)
   .delete(usersController.remove);
   
