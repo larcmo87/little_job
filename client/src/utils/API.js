@@ -6,8 +6,8 @@ export default {
  
 
   // Gets all Articles
-  getJobPostings: function() {
-    return axios.get("/api/project");
+  getUserById: function(id) {
+    return axios.get("/api/user/"+ id);
   },
  
   // Deletes the Articles with the given id
@@ -19,12 +19,20 @@ export default {
     console.log(userData);
     return axios.post("/api/user", userData);
   },
-  getUserByLogin: function(userId, password) {
-    console.log("Get user id: " + userId + "\npassword: " + password);
-    return axios.get("/api/user/" + userId + password);
+
+  // Saves a Article to the database
+  saveJobAd: function(jobAdData) {
+    console.log(jobAdData);
+    return axios.post("/api/project", jobAdData);
+  },
+  getUserByLogin: function(userData) {
+    console.log("User id in API = " + JSON.stringify(userData));
+    return axios.post("/api/userlogin", userData);
+
   },
   getAllPostsByLocation: function(location) {
     console.log(location);
     return axios.post("/api/search", location);
   }
+
 };

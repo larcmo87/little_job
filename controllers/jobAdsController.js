@@ -17,27 +17,11 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
  
-  create: function(req, res) {   
-    console.log("In the create route of projects req = " + JSON.stringify(req.body)) ;
+  create: function(req, res) {    
     db.Project
       .create(req.body)
-      .then(dbModel => {
-          db.User.findOneAndUpdate({"_id": req.body.id}, { $push: { "project": dbModel._id } }, { new: true },function(err, notedoc) {
-            // Send any errors to the browser
-            if (err) {
-              res.send(err);
-            }
-            // Or send the newdoc to the browser
-            else {
-
-              console.log(" note doe " + notedoc);
-              res.send(notedoc);
-            }
-          });
-
-
-          console.log("crate poject dbModle = " + dbModel);
-      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
     db.Project

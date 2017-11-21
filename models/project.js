@@ -4,11 +4,7 @@ const Bid = require("./bid.js");
 
 const projectSchema = new Schema({
 	
-	// this is the user who posts a project
-	client: {
-		type: String,
-		required: true
-	},
+	userId: {type:String, required: true},
 	description: { type: String },
 	start_price: { type: Number, required: true },
 	status: {

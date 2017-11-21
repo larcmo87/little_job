@@ -9,18 +9,39 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  findByLogin: function(req, res) {
-    console.log("testing findByLogin... req: " + req);
+  findOne: function(req, res) {
+    console.log("testing findByLogin... req: " + JSON.stringify(req.params));
+
+
     db.User
-      .findOne({"username":req.body.username, "password":req.body.password})
-      .then(dbModel => res.json(dbModel))
+      .findOne({userId:req.body.userId, password:req.body.password})
+      .then(dbModel => {
+        console.log(dbModel)
+        if(!dbModel){
+          let response = {
+            userId: "No user Found"
+          }
+          res.json(response);
+        }else{
+        res.json(dbModel);  
+        }      
+      })
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
     db.User
       .findById(req.params.id)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .populate({path : 'project', populate : {path : 'bid'}})
+      .exec((err,user) =>{
+         if(err){
+           return handleError(err);
+         }
+         
+         res.json(user.project);
+         console.log("get all projects and populate = " + user.project);
+       
+      })
+     
   },
   create: function(req, res) {
     console.log("create====================")
@@ -41,5 +62,7 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  }
+  },
+
+
 };

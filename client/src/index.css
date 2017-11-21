@@ -73,6 +73,8 @@ body {
 .job-posting-detail{
   border: 1px solid black;
   text-align: left;
+  height: 150px;
+  overflow-y: scroll;
 }
 
 .bid-items{
@@ -111,3 +113,4 @@ body {
   width:100%;
   margin-left:0;
 }
+
