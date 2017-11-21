@@ -19,6 +19,7 @@ export default {
     console.log(userData);
     return axios.post("/api/user", userData);
   },
+
   // Saves a Article to the database
   saveJobAd: function(jobAdData) {
     console.log(jobAdData);
@@ -27,6 +28,7 @@ export default {
   getUserByLogin: function(userData) {
     console.log("User id in API = " + JSON.stringify(userData));
     return axios.post("/api/userlogin", userData);
+
   },
   getAllPostsByLocation: function(location) {
     console.log(location);

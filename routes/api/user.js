@@ -16,7 +16,6 @@ router.route("/userlogin")
 router
   .route("/user/:id")
   .get(usersController.findById)
-  
   .put(usersController.update)
   .delete(usersController.remove);
 
