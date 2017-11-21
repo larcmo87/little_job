@@ -27,6 +27,9 @@
 .job-posting-title{
 	float:left;
 	display:inline-block;
+	padding: 10px;
+	border-radius: .5em;
+	outline-color: white;
 }
 .title_delete > button{
 	float:right;
@@ -45,3 +48,4 @@
 	float:right;
 	display:inline-block;
 }
+
