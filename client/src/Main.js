@@ -4,7 +4,9 @@ import Login from "./Pages/Login";
 import Search from "./Pages/Search";
 import Type from "./Pages/Type";
 import Mechanic from "./Pages/Mechanic";
+import MechanicDashboard from "./Pages/Mechanic-Dashboard";
 import Poster from "./Pages/Poster";
+import PosterDashboard from "./Pages/Poster-Dashboard";
 import CreatePost from "./Pages/CreatePost";
 import Successful from "./Pages/Successful";
 
@@ -22,6 +24,8 @@ const Main = () =>
          <Route exact path="/type" component={Type} /> 
          <Route exact path="/mechanic" component={Mechanic} /> 
          <Route exact path="/poster" component={Poster} /> 
+         <Route exact path="/mechanic-dashboard" component={MechanicDashboard} /> 
+         <Route exact path="/poster-dashboard" component={PosterDashboard} /> 
          <Route exact path="/createpost" component={CreatePost} /> 
          <Route exact path="/successful" component={Successful} /> 
       </Switch>

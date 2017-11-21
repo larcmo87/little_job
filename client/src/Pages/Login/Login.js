@@ -9,45 +9,96 @@ import Type  from '../../components/Button';
 
 
 const DAY_FORMAT = 'YYYYMMDD';
+let showH = false;
+let errorInLineStyle = {color: "red"};  //Error login message inline style CSS
 
 class Login extends Component {
 	state = {
 	    userId: "",
 	    password: "",
-	    redirect: "" 
+	    redirect: "" ,
+	    showLoginError: false,
+	    errorMessage: ""
   	};
 
+  	
 	// LOGIN get route = "api/login"
-	getUserByLogin = () => {
-		API.getUserByLogin({
-			userId: this.state.userId,
-			password: this.state.password
+	getUserByLogin = (event) => {
+		console.log("user id in userbylogin = " + this.state.userId);
 
-		})
-		.then(res => {
-			localStorage.setItem('loginData', this.state.userId);
-			this.setState({
-				userId: "",
-				password: ""
-			});
+		//Authenticate user login id and password. 
+		API.getUserByLogin({userId:this.state.userId,password:this.state.password})
+		.then(res => {			
+			
+			//If userId/password is incorrect the do...
+			if(res.data.userId === "No user Found"){
+				this.setState({
+					userId: "",
+					password: "",
+					errorMessage:"User Id or Password Not Found!",
+					showLoginError: true
+				});
 
-			this.redirectToPoster;
+			//If userId/password authenticated then do...
+			}else{
+				
+				//reset state values (userId, password, errorMessage, showLoginError)
+				this.setState({
+					userId: "",
+					password: "",
+					errorMessage:"",
+					showLoginError: false
+				});
+
+				//Store the user record _id in localstorage variable Id
+				localStorage.setItem('Id', res.data._id);
+				localStorage.setItem('userId', res.data.userId);
+
+				//if the user type is "poster" then do...
+				if(res.data.user_type === "poster"){
+					//Redirect to the Poster-Dashboard page
+					this.redirectToPosterDashboard(event);				
+				} 
+				//if the user type is "mechanic" then do..
+				else if(res.data.user_type === "mechanic"){
+					//Redirect to the Mechanic-Dashboard page
+					this.redirectToMechanicDashboard(event);
+				}
+				console.log("loginby id respose = " + JSON.stringify(res,null,2));
+			}
+			
 		})
 		.catch(err => console.log(err));
 	};
 
-	// goes to "/poster-dashboard"
+	// goes to "/poster"
 	redirectToPoster = event => {
+		 event.preventDefault();
+		 console.log("In searchpage");
+		  this.setState({redirect: "/poster"});
+	};
+
+	// goes to "/poster-dashboard"
+	redirectToPosterDashboard = (event) => {
 		 event.preventDefault();
 		 console.log("In searchpage");
 		  this.setState({redirect: "/poster-dashboard"});
 	};
+
 	// goes to "/mechanic-dashboard"
 	redirectToMechanic = event => {
 		 event.preventDefault();
 		 console.log("In serchpage");
+		  this.setState({redirect: "/mechanic"});
+	};
+
+	// goes to "/mechanic-dashboard"
+	redirectToMechanicDashboard = event => {
+		 event.preventDefault();
+		 console.log("In serchpage");
 		  this.setState({redirect: "/mechanic-dashboard"});
 	};
+
 	//===========================================
 	handleInputChange = event =>{
 		const { name, value } = event.target;
@@ -60,12 +111,20 @@ class Login extends Component {
     handleFormSubmit = event => {
 	  	event.preventDefault();
 	  	// if (this.state.topic && this.state.beginDT && this.state.endDT) {
-	  		this.getUserByLogin(this.state.userId, this.state.password);  
+	  		this.getUserByLogin(event);  
 	};
 
 
 	render() {
-			if (this.state.redirect === "/mechanic-dashboard") {
+			if (this.state.redirect === "/mechanic") {
+    			return <Redirect push to={this.state.redirect} />;
+  			}
+
+  			if (this.state.redirect === "/mechanic-dashboard") {
+    			return <Redirect push to={this.state.redirect} />;
+  			}
+
+  			if (this.state.redirect === "/poster") {
     			return <Redirect push to={this.state.redirect} />;
   			}
 
@@ -134,15 +193,35 @@ class Login extends Component {
 								</Link>								
 							</div>	
 							
-						</div>{/*end of row class}*/}							
+						</div>{/*end of row class}*/}
+						
+						{(this.state.showLoginError) ? (
+							<div className="row login-error-row">
+								<div className="col-sm-6 col-md-6 col-lg-6 login-error-col">
+	        								<h3 className="login-error" style={errorInLineStyle}>
+	        									{this.state.errorMessage}
+	        								</h3>
+	        					</div>		
+							</div>
+	        							) : <div className="row">
+								<div className="col-sm-12 col-md-12 col-lg-12">
+										  <h3>   </h3>
+	        					</div>		
+							</div>
+						}
+	        					
+						
 						<div className="row">
 							<div className="col-sm-6 col-md-6 col-lg-6">
+									
 								<Panel>
 								  <PanelHeading 
 								  	title="Log In"
 								  	/>
 								  <PanelBody>
+								  	
 								  	<Form>
+								  		
 								  		<FormLabel
 								  		 
 								  		  text="User ID"
