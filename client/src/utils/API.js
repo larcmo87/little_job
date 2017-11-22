@@ -28,11 +28,16 @@ export default {
   getUserByLogin: function(userData) {
     console.log("User id in API = " + JSON.stringify(userData));
     return axios.post("/api/userlogin", userData);
-
   },
+
   getAllPostsByLocation: function(location) {
     console.log(location);
     return axios.post("/api/search", location);
+  },
+
+  getJobPostings: function(userData) {
+    console.log(userData);
+    return axios.get("/api/posts", userData);
   }
 
 };
