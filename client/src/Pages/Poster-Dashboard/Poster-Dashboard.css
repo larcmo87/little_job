@@ -1,3 +1,6 @@
+body {
+	background-color: #EEEEEE;
+}
 #job-ad-textarea-fg > .text-area{
   height: 200px;
   resize: none;
@@ -38,11 +41,20 @@
 	display:inline-block;
 	background-color: red;
 }
+.poster-title {
+	margin-right: .5em;
+}
 
 .btn-delete-post:hover{	
 	background-color: green;	
 }
-
+#create-job-ad-btn {
+	margin-bottom: 20px;
+	padding-left: 4em;
+	padding-right: 4em;
+	font-size: 14pt;
+	background-color: #1f86c5;
+}
 
 #cancel-job-ad-submit{
 	margin-left:10px;
