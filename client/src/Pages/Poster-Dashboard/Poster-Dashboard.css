@@ -39,7 +39,7 @@ body {
 	float:right;
 	position:relative;
 	display:inline-block;
-	background-color: red;
+	color: white;
 }
 .poster-title {
 	margin-right: .5em;
