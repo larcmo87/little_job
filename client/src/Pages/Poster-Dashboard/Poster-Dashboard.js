@@ -138,7 +138,8 @@ class PosterDashboard extends Component {
 		                				
 		                				 <ListItem key={post._id}>
 		                				   <div className="title_delete">
-			                				 	<div className="job-posting-title">Job Posted by: {post.userId}  -  Starting Bid Amount: ${post.start_price}</div>
+			                				 	<div className="job-posting-title poster-title">Poster: {post.userId}</div>
+			                				 	<div className="job-posting-title">Starting Bid: ${post.start_price}</div>
 			                				   											  		
 												<button type="button" className="btn btn-info btn-delete-post" onClick="">Delete Job</button>										          		
 												         	

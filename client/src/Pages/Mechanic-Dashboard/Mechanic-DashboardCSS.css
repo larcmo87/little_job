@@ -1,7 +1,14 @@
+body {
+	background-color: #EEEEEE;
+}
 .job-posting-title{
 	float:left;
 	display:inline-block;
 	padding: 10px;
 	border-radius: .5em;
 	outline-color: white;
+}
+
+.poster-title {
+	margin-right: .5em;
 }
