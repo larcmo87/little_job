@@ -1,6 +1,7 @@
 #job-ad-textarea-fg > .text-area{
   height: 200px;
   resize: none;
+  border-radius: .5em;
 }
 
 #bid-start-amount{
