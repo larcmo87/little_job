@@ -1,12 +1,10 @@
-import { Form, Input, FormLabel, Submit } from "../../components/Form";
 import React, { Component } from 'react';
-import {  BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import API from '../../utils/API';
+import { Link } from "react-router-dom";
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
-import Button  from '../../components/Button'
 
 
-const DAY_FORMAT = 'YYYYMMDD';
+
+
 
 class Type extends Component {
 	

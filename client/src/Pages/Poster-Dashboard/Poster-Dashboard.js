@@ -1,18 +1,12 @@
 import { Form, Input, FormLabel, Submit } from "../../components/Form";
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import {  BrowserRouter as Router, Route, Switch, Link, findDOMNode  } from "react-router-dom";
 import { List, ListItem } from "../../components/List";
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
 import Button  from '../../components/Button'
-import Type  from '../../components/Button'
 import { FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
-import CSS  from './Poster-Dashboard.css'
-
-
-
-const DAY_FORMAT = 'YYYYMMDD';
+import './Poster-Dashboard.css'
 
 class PosterDashboard extends Component {
 	state = {
@@ -31,7 +25,7 @@ class PosterDashboard extends Component {
 	
  	getPosterJobAds = (id) =>{
  		
- 		API.getUserById(id)
+ 		API.getPosterById(id)
  		.then(res =>{
  			 this.setState({posts: res.data})
  				console.log("All Postings " + JSON.stringify(res.data));
@@ -59,7 +53,7 @@ class PosterDashboard extends Component {
  		})
  		.catch(err => console.log(err));
  	};
-	
+/*	
 	redirectToPoster = event => {
 		 event.preventDefault();
 		 console.log("In serchpage");
@@ -70,7 +64,7 @@ class PosterDashboard extends Component {
 		 event.preventDefault();
 		 console.log("In serchpage");
 		  this.setState({redirect: "/mechanic"});
-	};
+	};*/
 
 	createJobAdHandler = () =>{
 		this.setState({

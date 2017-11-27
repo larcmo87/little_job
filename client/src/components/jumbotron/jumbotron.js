@@ -1,5 +1,5 @@
 import React from "react";
-import CSS from "./JumbotronCSS.css";
+import "./JumbotronCSS.css";
 import NAV from "../Nav/NavBar"
 
  const Jumbotron = () =>

@@ -7,7 +7,7 @@ import "./NavCSS.css";
   <a href="#news">News</a>
   <a href="#contact">Contact</a>
   <a href="#about">About</a>
-  <a href="javascript:void(0);" className="icon" onClick="myFunction()">&#9776;</a>
+ 
 </div>;
 
 

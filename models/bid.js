@@ -8,7 +8,12 @@ const bidSchema = new Schema({
 		required: true
 	},
 	price: { type: Number },
-	time: { type: String }
+	time: { type: String },
+	// project is a child of the bid	
+	project: {
+		type: Schema.Types.ObjectId,
+		ref: "Project"
+	}
 });
 
 const Bid = mongoose.model("Bid", bidSchema);

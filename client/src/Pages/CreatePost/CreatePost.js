@@ -1,13 +1,13 @@
 import { Form, Input, FormLabel, Submit } from "../../components/Form";
 import React, { Component } from 'react';
-import {  BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
-import Button  from '../../components/Button'
 
-import { FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 
-const DAY_FORMAT = 'YYYYMMDD';
+import { FormControl, FormGroup } from 'react-bootstrap';
+
+
 
 class Poster extends Component {
 	
@@ -41,9 +41,7 @@ class Poster extends Component {
 		console.log("event target = " + name);
 	    this.setState({
 	    	[name]: value
-    	});
-
-    	console.log
+    	});    	
 	};
 
      handleFormSubmit = event => {

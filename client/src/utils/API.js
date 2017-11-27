@@ -1,15 +1,21 @@
 import axios from "axios";
-import qs from "querystring";
 
 export default {
  
  
 
-  // Gets all Articles
-  getUserById: function(id) {
+  // Gets poster's job posts
+  getPosterById: function(id) {
     return axios.get("/api/user/"+ id);
   },
- 
+ // Gets mechanics job bids
+  getMechanicById: function(id) {
+    return axios.get("/api/mechanic/"+ id);
+  },
+  getJobPostings: function(location) {
+    console.log(location);
+   return axios.get("api/location/" +  location);
+  },
   // Deletes the Articles with the given id
   deleteArticle: function(id) {
     return axios.delete("/api/articles/" + id);
@@ -19,20 +25,21 @@ export default {
     console.log(userData);
     return axios.post("/api/user", userData);
   },
-
-  // Saves a Article to the database
+  // Saves a Job Ad to the database
   saveJobAd: function(jobAdData) {
     console.log(jobAdData);
     return axios.post("/api/project", jobAdData);
+  },
+  // Saves a bid to the database
+  saveJobBid: function(jobBidData) {
+    console.log(jobBidData);
+    return axios.post("/api/bid", jobBidData);
   },
   getUserByLogin: function(userData) {
     console.log("User id in API = " + JSON.stringify(userData));
     return axios.post("/api/userlogin", userData);
 
-  },
-  getAllPostsByLocation: function(location) {
-    console.log(location);
-    return axios.post("/api/search", location);
   }
+  
 
 };

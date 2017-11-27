@@ -16,10 +16,37 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    db.Bid
+    console.log("In bid controller");
+     db.Bid
       .create(req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .then(dbModel => {
+          db.User.findOneAndUpdate({"_id": req.body.id}, { $push: { "bid": dbModel._id } }, { new: true },function(err, notedoc) {
+            // Send any errors to the browser
+            if (err) {
+              res.send(err);
+            }
+            // Or send the newdoc to the browser
+            else { 
+              db.Project.findOneAndUpdate({"_id": req.body.project}, { $push: { "bid": dbModel._id } }, { new: true },function(err, biddoc) {
+                // Send any errors to the browser
+                if (err) {
+                  res.send(err);
+                }
+                // Or send the newdoc to the browser
+                else {
+
+                  console.log(" biddoc = " + biddoc);
+                 
+                }
+              });
+            }
+          });
+
+
+          console.log("crate poject dbModle = " + dbModel);
+      })
+
+
   },
   update: function(req, res) {
     db.Bid

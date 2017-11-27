@@ -1,106 +1,90 @@
-import { Form, Input, FormLabel, Submit } from "../../components/Form";
+import { Input } from "../../components/Form";
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import {  BrowserRouter as Router, Route, Switch, Link, findDOMNode  } from "react-router-dom";
 import { List, ListItem } from "../../components/List";
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
 import Button  from '../../components/Button'
-import Type  from '../../components/Button'
 
-
-
-const DAY_FORMAT = 'YYYYMMDD';
 
 class Login extends Component {
 	state = {
-		posts: [],
-	    redirect: false
+		bids: [],
+		redirect: false
 	   
   	};
 	componentDidMount() {
-		console.log("in did mount of serch");
-   		this.getJobPostings();
+		this.getMechanicJobBids(localStorage.getItem('Id'));
+   		
     }
 	
- 	getJobPostings = () =>{
-
- 		API.getJobPostings()
+ 	getMechanicJobBids = (id) =>{
+ 		let jobBids = [];
+ 		API.getMechanicById(id)
  		.then(res =>{
- 			this.setState({posts: res.data})
- 				console.log("All Postings " + JSON.stringify(res.data));
+ 			
+ 				console.log("All Mechanics bids " + JSON.stringify(res.data));
+
+ 			res.data.bid.forEach(bid => {		
+ 				//LOOP THROUGH EACH PROJECT BID AND PUSH THE BID TO THE BID ARRAY OF OBJECT postsbylocation
+				/*for(let b = 0; b < user.bid.length; b++){
+					console.log(" bid id = " + user.bid[b]._id);*/
+					//OJECT THAT WILL HOLD PROJECT DATA
+			 		let mechanicProjectBids = {
+			 			projectId: "",
+			 			bidId: "",
+			 			userId: "",
+			 			start_price:"",
+			 			description: "",
+			 			bidTime: "",
+			 			bidAmount: ""
+			 			
+			 		};
+			 		if(bid.project !== null){
+			 			mechanicProjectBids.projectId = bid.project._id;
+			 			mechanicProjectBids.userId = bid.project.userId;
+			 			mechanicProjectBids.start_price = bid.project.start_price;
+						mechanicProjectBids.description = bid.project.description;
+					
+			 		}
+					
+					mechanicProjectBids.bidId = bid._id;					
+					mechanicProjectBids.bidTime =  bid.time;
+					mechanicProjectBids.bidAmount =  bid.price;	
+
+					jobBids.push(mechanicProjectBids);		
+				// }	
+					
+ 			});
+ 			this.setState({bids: jobBids});
+ 			console.log("this state bids value = " + this.state.bids);
  		})
  		.catch(err => console.log(err));
+ 		
+ 		localStorage.setItem('searchLocation','');
+ 		
  	};
-	
-	redirectToPoster = event => {
-		 event.preventDefault();
-		 console.log("In serchpage");
-		  this.setState({redirect: "/poster"});
+
+ 	searchPostsByLocation = () =>{
+		//Store the location in local storage item searchLocation
+		localStorage.setItem('searchLocation', this.state.searchLocation);
+		//reset state values (userId, password, errorMessage, showLoginError)
+		this.setState({
+			userId: "",
+			password: "",
+			errorMessage:"",
+			showLoginError: false,
+			redirect: "/search"
+		});
 	};
-
-	redirectToMechanic = event => {
-		 event.preventDefault();
-		 console.log("In serchpage");
-		  this.setState({redirect: "/mechanic"});
-	};
-
-
 
 	render() {
-			if (this.state.redirect === "/mechanic") {
-    			return <Redirect push to={this.state.redirect} />;
-  			}
-
-  			if (this.state.redirect === "/poster") {
+			if (this.state.redirect === "/search") {
     			return <Redirect push to={this.state.redirect} />;
   			}
 		  
 		return (
-			<div className="login">
-						
-						<div className="modal fade" id="userTypeModal" tabIndex="-1" role="dialog" aria-labelledby="userTypeModalLabel" aria-hidden="true">
-						  <div className="modal-dialog" role="document">
-						    <div className="modal-content">						     
-						      <div className="modal-body">
-						      	<button type="button" className="close" data-dismiss="modal" aria-label="Close">
-						         	<span aria-hidden="false" >&times;</span>
-						       	 </button>
-						      	<Panel>
-								  <PanelHeading 
-								  	title="Account Type"
-								  	/>
-								  
-								  <PanelBody>
-
-								  	<div className="user-types" id="user-mechanic">
-								  		<Link to={"/type"}>
-						          		<button type="button" className="btn btn-info btn-user-type" data-dismiss="modal" onClick={this.redirectToPoster}>Poster (Post Job)</button>
-						          		</Link>
-						         	 </div>
-						          	<div className="user-types" id="user-poster">
-						        		<button type="button" className="btn btn-info btn-user-type" data-dismiss="modal" onClick={this.redirectToMechanic}>Mechanic (Bid on Job)</button>
-						        	</div>
-						         </PanelBody>
-						        	
-						        </Panel>
-						        <button type="button" className="btn btn-primary btn-cancel" data-dismiss="modal" >
-					         		Cancel
-					       	 	</button>
-
-						      </div>
-						     
-					      		
-							  
-						      
-						    </div>
-						  </div>
-						</div>
-						
-
-
-
-				{/*End of Modal Component*/}
+			<div className="login">						
 
 
 				<div className="row">
@@ -117,6 +101,7 @@ class Login extends Component {
 									type="text"
 									id="search-location"
 									placeholder="Search Location"
+									onClick={this.searchPostsByLocation}
 								/>
 							</div>
 							<div className="col-sm-2 col-md-2 col-lg-2">		
@@ -130,17 +115,17 @@ class Login extends Component {
 							
 						</div>{/*end of row class}*/}							
 						<div className="row">
-							{(this.state.posts.length ) ? (
+							{(this.state.bids.length ) ? (
 		        			
 		              			<List id="job-post">
-		                			{this.state.posts.map(post => (
+		                			{this.state.bids.map(bid => (
 		                				
-		                				 <ListItem key={post._id}>
-		                				 	<div className="job-posting-title">Job Posted by: {post.project[0]} - Starting Bid Amount: ${post.start_price}</div>
+		                				 <ListItem key={bid.projectId}>
+		                				 	<div className="job-posting-title">Job Posted by: {bid.userId} - Starting Bid Amount: ${bid.start_price}</div>
 		                				   <div className="job-posting-detail">  
 
 		                					<strong>
-		                						{post.description}
+		                						{bid.description}
 		                					</strong>	                					
 		                				   </div>
 
@@ -154,73 +139,17 @@ class Login extends Component {
 						                				
 					                				 <ListItem key=""> 
 						                				 <div className="bid-items">       									                					
-				                							<div className="bid-description">
-				                								
-														  		Hours: 2   Bid: 150.00	Bid By: Mechanic1
-														  		
+				                							<div className="bid-description">				                								
+														  		Hours: {bid.bidTime}   Bid: {bid.bidAmount}														  		
 														    </div>  
 						                					<div className="btn-accept-bid">												  		
-												          		<button type="button" className="btn btn-info btn-accept-bit" onClick="">Accept Bid</button>										          		
+												          		<button type="button" className="btn btn-info btn-accept-bit" onClick="">Remove Bid</button>										          		
 												         	</div>
 												         </div>          
-					                 				</ListItem>
-					                 				<ListItem key="">          									                					
-				                						<div className="bid-items">       									                					
-				                							<div className="bid-description">
-														  		Hours: 2   Bid: 250.00	Bid By: Mechanic2													  	
-														    </div>  
-						                					<div className="btn-accept-bid">												  		
-												          		<button type="button" className="btn btn-info btn-accept-bit" onClick="">Accept Bid</button>										          		
-												         	</div>
-												         </div>         
-					                 				</ListItem>
-						                			
+					                 				</ListItem>					                 				
 						              			</List>	
 							              	</PanelBody>
-							              </Panel>	
-
-							              <div className="job-posting-title">Job Posted by: User1  -  Location: Sandy, UT</div>
-							              <div className="job-posting-detail">              				 
-		                					<strong>
-		                						Lorem ipsum dolor sit amet, ne aperiam commune eligendi est. At ullum noluisse suscipiantur mei, et dictas sapientem assentior cum, erant decore reformidans his ne. At tota legere discere nec, an zril aliquip inermis ius, sit nisl putant vituperata ei. Augue affert te nec, pro percipit pertinacia no.
-		                					</strong>	                					
-		                				   </div>
-
-		                				  <Panel>
-	                						<PanelHeading 
-										  		title="Job Bids"
-										  	/>
-									  		<PanelBody>
-										  		<List id="job-bid">
-						                			{/*{this.props.searchResult.map(result => (*/}
-						                				
-					                				 <ListItem key=""> 
-						                				 <div className="bid-items">       									                					
-				                							<div className="bid-description">
-				                								<p>
-				                									Hours: 2   Bid: 200.00 Bid By: Mechanic1
-														  		</p>													  	
-														  		
-														    </div>  
-						                					<div className="btn-accept-bid">												  		
-												          		<button type="button" className="btn btn-info btn-accept-bit" onClick="">Accept Bid</button>										          		
-												         	</div>
-												         </div>          
-					                 				</ListItem>
-					                 				<ListItem key="">          									                					
-				                						<div className="bid-items">       									                					
-				                							<div className="bid-description">
-														  		Hours: 2   Bid: 250.00	Bid By: Mechanic2	 											  	
-														    </div>  
-						                					<div className="btn-accept-bid">												  		
-												          		<button type="button" className="btn btn-info btn-accept-bit" onClick="">Accept Bid</button>										          		
-												         	</div>
-												         </div>         
-					                 				</ListItem>
-						                			
-						              			</List>	
-							              	</PanelBody>
-							              </Panel>											           
+							              </Panel>							           
 		                 				</ListItem>
 		                			))}
 		              			</List>

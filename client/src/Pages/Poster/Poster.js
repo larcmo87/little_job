@@ -1,15 +1,10 @@
 import { Form, Input, FormLabel, Submit } from "../../components/Form";
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import {  BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import { createStore } from 'redux'
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
-import Button  from '../../components/Button'
+import { FormControl, FormGroup } from 'react-bootstrap';
 
-import { FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
-
-const DAY_FORMAT = 'YYYYMMDD';
 
 class Poster extends Component {
 	
@@ -59,15 +54,13 @@ class Poster extends Component {
 					user_type: "poster",
 					email: "",
 					phone_number: "",
-					credentials: "",
 					address: "",
 					city: "",
 					state: "",
 					zip: ""
 				});
-				
-
-				this.redirectToSuccessful
+			
+				this.redirectToSuccessful();
 			})
 			.catch(err => console.log(err));
 	};
@@ -77,17 +70,18 @@ class Poster extends Component {
 		 console.log("In searchpage");
 		  this.setState({redirect: "/successful"});
 	};
-	//============================================
+
+
+	//DYNAMICALLY UPDATE COMPONENT STATE
 	handleInputChange = event =>{
 		const { name, value } = event.target;
 		console.log("event target = " + name);
 	    this.setState({
 	    	[name]: value
     	});
-
-    	console.log
 	};
 
+	//SUBMIT FORM HANDLER
     handleFormSubmit = event => {
 	  	event.preventDefault();
 	  	// if (this.state.topic && this.state.beginDT && this.state.endDT) {
@@ -106,6 +100,34 @@ class Poster extends Component {
   			}
 		return (
 			<div className="login">
+				<div className="modal fade" id="userTypeModal" tabIndex="-1" role="dialog" aria-labelledby="userTypeModalLabel" aria-hidden="true">
+				  <div className="modal-dialog" role="document">
+				    <div className="modal-content">						     
+				      <div className="modal-body">
+				      	<button type="button" className="close" data-dismiss="modal" aria-label="Close">
+				         	<span aria-hidden="false" >&times;</span>
+				       	 </button>
+				      	<Panel>
+						  <PanelHeading 
+						  	title="Account Type"
+						  	/>						  
+						  <PanelBody>
+						  	<div className="user-types" id="user-mechanic">								  		
+				          		<button type="button" className="btn btn-info btn-user-type" data-dismiss="modal" onClick={this.redirectToPoster}>Poster (Post Job)</button>						          		
+				         	 </div>
+				          	<div className="user-types" id="user-poster">
+				        		<button type="button" className="btn btn-info btn-user-type" data-dismiss="modal" onClick={this.redirectToMechanic}>Mechanic (Bid on Job)</button>
+				        	</div>
+				         </PanelBody>				        	
+				        </Panel>
+				        <button type="button" className="btn btn-primary btn-cancel" data-dismiss="modal" >
+			         		Cancel
+			       	 	</button>
+				      </div>					      
+				    </div>
+				  </div>
+				</div>{/*End of Modal Component*/}
+
 				<div className="row">
 					<div className="col-sm-2 col-md-2 col-lg-2">
 					</div>
@@ -187,7 +209,7 @@ class Poster extends Component {
 						  		/>
 						  		 <FormGroup controlId="formControlsSelect">
       								
-      								<FormControl componentClass="select" placeholder="State" name="state">
+      								<FormControl componentClass="select" placeholder="State" name="state" value={this.state.state}>
 									<option value="">select one</option>
   									<option value="AL">Alabama</option>
   									<option value="AK">Alaska</option>
@@ -239,8 +261,7 @@ class Poster extends Component {
   									<option value="WA">Washington</option>
   									<option value="WV">West Virginia</option>
   									<option value="WI">Wisconsin</option>
-  									<option value="WY">Wyoming</option>
-  									
+  									<option value="WY">Wyoming</option> 									
 						  			
       							</FormControl>
       									

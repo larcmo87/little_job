@@ -1,16 +1,10 @@
 import { Form, Input, FormLabel, Submit } from "../../components/Form";
 import { Redirect } from 'react-router';
-
 import React, { Component } from 'react';
-import {  BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
-import Button  from '../../components/Button'
-import CSS from "./MechanicCSS.css";
+import "./MechanicCSS.css";
 import { FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
-
-
-const DAY_FORMAT = 'YYYYMMDD';
 
 class Mechanic extends Component {
 	
@@ -36,64 +30,6 @@ class Mechanic extends Component {
    		
   	}
 
-	// searchNYT = (query, beginDt, endDt) => {
-	// 	this.setState({
-	// 		nytArticles: []
-	// 	});
-
-	// 	API.getNYTArcitle(query, beginDt, endDt)
-	// 	.then(res => {
-	// 		this.setState({
-	// 			nytArticles: res.data.response.docs,
-	// 			query: "",
-
-	// 			topic: "",
-	// 			beginDT: "19500101",
-	// 			endDT: moment(Date.now()).format(DAY_FORMAT)
-	// 		})
-
-
-	// 		let searchResult = this.state.nytArticles;
-	// 		console.log(JSON.stringify(searchResult, null, 2));
-	// 		console.log("search result lenght = " + this.state.nytArticles.length);
-	// 	})	
-	// 	.catch(err => console.log(err));
-
-			
-		
-		
-	// };
-	//  handleStartDayChange = (beginDT) => {
-	//  	beginDT = moment(beginDT).format(DAY_FORMAT)
-	//  	console.log()
-	//     this.setState({
-	//       beginDT
-	//     });
-	//   };
-
-	// handleEndDayChange  = (endDT) => {
-	//  	endDT = moment(endDT).format(DAY_FORMAT)
-	//  	console.log()
-	//     this.setState({
-	//       endDT
-	//     });
-	//   }; 
-
-	// handleInputChange = event =>{
-	// 	const { name, value } = event.target;
-	// 	console.log("event target = " + event.target);
-	//     this.setState({
-	//     	[name]: value
- //    	});
-	// };
-	
-	//   handleFormSubmit = event => {
-	//   	event.preventDefault();
-	//   	if (this.state.topic && this.state.beginDT && this.state.endDT) {
-	//   		this.searchNYT(this.state.topic, this.state.beginDT, this.state.endDT);
-	//    		console.log("states = " + JSON.stringify(this.state, null, 2));
-	//    }
-	//   };
 	addMechanic = () => {
 		
 		console.log(this.state.userInfo);
@@ -102,7 +38,7 @@ class Mechanic extends Component {
 				userId: this.state.userId,
 				username: this.state.username, 
 				password: this.state.password,
-				user_type: this.state.user_type,
+				user_type: "mechanic",
 	  			email: this.state.email,
 	  			phone_number: this.state.phone_number,
 	  			credentials: this.state.credentials,
@@ -113,6 +49,22 @@ class Mechanic extends Component {
 				
 			}) 
 			.then(res => {
+				localStorage.setItem('myData', this.state.userId);
+				this.setState({	 
+					redirect:"/successful",   
+	    			userId: "",
+	    			username: "",
+					password: "",
+					user_type: "poster",
+					email: "",
+					phone_number: "",
+					address: "",
+					city: "",
+					state: "",
+					zip: ""
+				});
+			
+				this.redirectToSuccessful();
 
 			})
 			.catch(err => console.log(err));
@@ -125,7 +77,7 @@ class Mechanic extends Component {
 	    	[name]: value
     	});
 
-    	console.log
+    	
 	};
 
      handleFormSubmit = event => {
@@ -146,7 +98,7 @@ class Mechanic extends Component {
 
 	render() {
 		  if (this.state.redirect) {
-		    return <Redirect push to="/login" />;
+		    return <Redirect push to="/successful" />;
 		  }
 
 		return (
@@ -234,7 +186,7 @@ class Mechanic extends Component {
 						  		/>
 						  		 <FormGroup controlId="formControlsSelect">
       								
-      								<FormControl componentClass="select" placeholder="State" name="state">
+      								<FormControl componentClass="select" placeholder="State" name="state" value={this.state.state} onChange={this.handleInputChange}>
 									<option value="">select one</option>
   									<option value="AL">Alabama</option>
   									<option value="AK">Alaska</option>
@@ -309,7 +261,7 @@ class Mechanic extends Component {
 								/>
 								<FormGroup controlId="formControlsTextarea">
       							<ControlLabel></ControlLabel>
-      							<FormControl componentClass="textarea" placeholder="Enter text here" />
+      							<FormControl componentClass="textarea" placeholder="Enter text here" name="credentials" value={this.state.credentials}  onChange={this.handleInputChange}/>
     							</FormGroup>
 						  		
 						  		<Submit 
