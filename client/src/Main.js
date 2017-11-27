@@ -9,6 +9,7 @@ import Poster from "./Pages/Poster";
 import PosterDashboard from "./Pages/Poster-Dashboard";
 import CreatePost from "./Pages/CreatePost";
 import Successful from "./Pages/Successful";
+import "./index.css"
 
 
 

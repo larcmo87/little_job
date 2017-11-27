@@ -1,26 +1,14 @@
 import { Input } from "../../components/Form";
 import React, { Component } from 'react';
-
 import { Redirect } from 'react-router';
-
 import { List, ListItem } from "../../components/List";
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel';
 import Button  from '../../components/Button';
-
 import { Modal } from 'react-bootstrap';
 
-
-
-
-
-
 class Search extends Component {
-	/*userId = "";
-		id = "";
-start_price = "";
-description = "";
-modalShow = false;*/
+
 	state = {
 		id: "",
 		posts: [],		
@@ -100,7 +88,7 @@ modalShow = false;*/
  			});
  				
  			//SET THE POSTS ARRAY STATE	
- 			this.setState({posts: searchPosts})
+ 			this.setState({posts: searchPosts,searchlocation: ""})
  			
  		})//END OF THEN
  		.catch(err => console.log(err));
@@ -118,7 +106,7 @@ modalShow = false;*/
   	open = () => {
     	 this.setState({ showModal: true });
   	};
-	
+	/*
 	redirectToPoster = event => {
 		 event.preventDefault();
 		 console.log("In serchpage");
@@ -129,7 +117,7 @@ modalShow = false;*/
 		 event.preventDefault();
 		 console.log("In serchpage");
 		  this.setState({redirect: "/mechanic"});
-	};
+	};*/
 
 	//BID ON JOB
 	bidOnJob = (id,userId,start_price,description) => event => {
@@ -150,17 +138,20 @@ modalShow = false;*/
 		
 	};
 
+	//POST BID AFTER ENTING BID INFO IN THE BID MODAL
 	postBid = () =>{
 		let Id = localStorage.getItem('Id');
 		let userId = localStorage.getItem('userId');
 		API.saveJobBid({id:Id, provider:userId, price:this.state.bidAmount, time:this.state.bidTime, project:this.state.id})
 		.then(res => {
 			console.log("bid res = " + res.body);
-			
-			
 
 		});
+
+		//CLOSE MODAL
 		this.close();
+
+		//REFRESH THE JOB POSTINGS WITH NEW BID
 		this.getJobPostings(this.state.searchlocation);  
 	};
 
@@ -184,16 +175,16 @@ modalShow = false;*/
 	};
 
 	render() {
-		if (this.state.redirect === "/mechanic") {
+		/*if (this.state.redirect === "/mechanic") {
     		return <Redirect push to={this.state.redirect} />;
   		}
 
   		if (this.state.redirect === "/poster") {
     		return <Redirect push to={this.state.redirect} />;
-  		}
+  		}*/
 		  
 		return (
-			<div className="Search">
+			<div className="Search">			    
 				<div className="row">
 					<div className="col-sm-2 col-md-2 col-lg-2">
 					</div>

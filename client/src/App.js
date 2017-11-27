@@ -1,5 +1,5 @@
 import React from 'react';
-// import './App.css';
+import './App.css';
 import Jumbotron from './components/jumbotron';
 import Main from './Main';
 import Footer from './components/Footer';
