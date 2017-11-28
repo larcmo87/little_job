@@ -5,6 +5,7 @@ import { List, ListItem } from "../../components/List";
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
 import Button  from '../../components/Button'
+import NAV from "../../components/Nav/NavBar"
 
 
 class Login extends Component {
@@ -85,7 +86,7 @@ class Login extends Component {
 		  
 		return (
 			<div className="login">						
-
+				<NAV />
 
 				<div className="row">
 					<div className="col-sm-2 col-md-2 col-lg-2">

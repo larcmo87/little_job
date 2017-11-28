@@ -288,6 +288,7 @@ class Search extends Component {
             					type="number"
             					id="bid-time" 
             					value={this.state.bidTime}
+            					placeholder="0"
             					name="bidTime"
             					onChange={this.handleInputChange}
             				/>            				

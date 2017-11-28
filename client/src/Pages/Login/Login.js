@@ -5,6 +5,7 @@ import {  Link } from "react-router-dom";
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel';
 import Button  from '../../components/Button';
+import { setNavType } from "../../NavNavigation.js"
 
 
 let errorInLineStyle = {color: "red"};  //Error login message inline style CSS
@@ -60,6 +61,7 @@ class Login extends Component {
 				} 
 				//if the user type is "mechanic" then do..
 				else if(res.data.user_type === "mechanic"){
+					setNavType("mechanic");
 					//Redirect to the Mechanic-Dashboard page
 					this.redirectToMechanicDashboard(event);
 				}
