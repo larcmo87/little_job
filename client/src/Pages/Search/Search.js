@@ -212,7 +212,8 @@ class Search extends Component {
 									className="btn btn-info btn-sm"	
 									onClick={this.handleFormSubmit}									  	
 								/>									
-							</div>								
+							</div>	
+														
 						</div>{/*end of row class}*/}							
 						<div className="row">
 							{(this.state.posts.length) ? (		        				
