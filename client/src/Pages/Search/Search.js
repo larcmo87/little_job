@@ -1,11 +1,14 @@
 import { Input } from "../../components/Form";
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { Redirect } from 'react-router';
 import { List, ListItem } from "../../components/List";
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel';
 import Button  from '../../components/Button';
 import { Modal } from 'react-bootstrap';
+import { setNavType, setNavPath, setActive } from "../../NavNavigation.js"
+import App from "../../App"
 
 class Search extends Component {
 
@@ -25,14 +28,52 @@ class Search extends Component {
   	};
 	componentDidMount() {
 		console.log("in did mount of serch");
+
+		//IF SEARCH LOCATION IS NOT NULL THEN DO...
 		if(localStorage.getItem('searchLocation') !== null){
+
+			//IF USER TYPE IS mechacic THEN SET THE userType STATE
 			if(localStorage.getItem('userType') === 'mechanic'){
 				this.setState({
 					userType : localStorage.getItem('userType')
 				});
 			}
+
+			//GET ALL JOB POSTING FOR THE INDICATED SEARCH LOCATION
    			this.getJobPostings(localStorage.getItem('searchLocation'));
    		}
+
+   		//USER TYPE IS NOT NULL THEN DO.. (NAV BAR FUNCTIONALITY)
+   		if(localStorage.getItem('userType')){
+
+   			//IF USER TYPE IS MECHANIC THEN SET THE NAV PATH TO /mechanic-dashboard
+	  		if(localStorage.getItem('userType') === "mechanic"){
+				setNavPath("/mechanic-dashboard");
+			}
+
+			//IF USER TYPE IS POSTER THEN SET THE NAV PATH TO /poster-dashboard
+			if(localStorage.getItem('userType') === "poster"){
+				setNavPath("/poster-dashboard");
+			}
+
+			//SET THE DASHBOARD NAV LINK TO APPEAR IN THE NAV BAR
+			setNavType("Dashboard");
+
+			//SET THE SEARCH LINK ON NAV BAR TO ACTIVE
+	   		setActive("search");
+
+			//FORCE THE APP TO RERENDER TO THAT THE NAV BAR UPDATES		
+	   		ReactDOM.render(<App />,document.getElementById('root'));
+	   	}else{
+	   		//SET THE SEARCH LINK ON NAV BAR TO ACTIVE
+	   		setActive("search");
+
+	   		//FORCE THE APP TO RERENDER TO THAT THE NAV BAR UPDATES	
+	   		ReactDOM.render(<App />,document.getElementById('root'));
+	   	}  
+	   	
+	   	//SET THE SEARCH LINK ON NAV BAR TO ACTIVE
+	   	setActive("search");
     };
 
     componentWillMount(){

@@ -1,11 +1,16 @@
 import { Form, Input, FormLabel, Submit } from "../../components/Form";
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { Redirect } from 'react-router';
 import {  Link } from "react-router-dom";
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel';
 import Button  from '../../components/Button';
-import { setNavType } from "../../NavNavigation.js"
+import { setNavType, setNavPath, setActive } from "../../NavNavigation.js"
+import NAV from "../../components/Nav/NavBar"
+import App from "../../App"
+
+
 
 
 let errorInLineStyle = {color: "red"};  //Error login message inline style CSS
@@ -19,8 +24,38 @@ class Login extends Component {
 	    errorMessage: "",
 	    searchLocation: ""
   	};
+  	componentDidMount() {
+	  	if(localStorage.getItem('userType')){
 
-  	
+	  		if(localStorage.getItem('userType') === "mechanic"){
+				setNavPath("/mechanic-dashboard");
+			}
+
+			if(localStorage.getItem('userType') === "poster"){
+				setNavPath("/poster-dashboard");
+			}
+
+			//SET THE DASHBOARD NAV LINK TO APPEAR IN THE NAV BAR
+			setNavType("Dashboard");
+
+			//SET THE SEARCH LINK ON NAV BAR TO ACTIVE
+			setActive("login");	
+
+			//FORCE THE APP TO RERENDER TO THAT THE NAV BAR UPDATES		
+	   		ReactDOM.render(<App />,document.getElementById('root'));
+	   	}else{
+	   		//SET THE SEARCH LINK ON NAV BAR TO ACTIVE
+	   		setActive("login");
+
+	   		//FORCE THE APP TO RERENDER TO THAT THE NAV BAR UPDATES	
+	   		ReactDOM.render(<App />,document.getElementById('root'));
+	   	}  	
+	  
+	};
+
+	componentWillMount() {
+		setActive("login");
+  	}
 	// LOGIN get route = "api/login"
 	getUserByLogin = (event) => {
 		console.log("user id in userbylogin = " + this.state.userId);
@@ -66,8 +101,22 @@ class Login extends Component {
 					this.redirectToMechanicDashboard(event);
 				}
 				console.log("loginby id respose = " + JSON.stringify(res,null,2));
+				
+				if(localStorage.getItem('userType')){
+					if(localStorage.getItem('userType') === "mechanic"){
+						setNavPath("/mechanic-dashboard");
+					}
+
+					if(localStorage.getItem('userType') === "poster"){
+						setNavPath("/poster-dashboard");
+					}
+					setNavType("Dashboard");
+					
+	   				ReactDOM.render(<App />,document.getElementById('root'));
+	   			}else{
+	   				setActive("login");
+	   			}
 			}
-			
 		})
 		.catch(err => console.log(err));
 	};

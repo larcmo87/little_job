@@ -23,6 +23,9 @@
 
 }
 
+.topnav a:active{background-color:#81b3c1;
+    color: white;}
+
 /* Change the color of links on hover */
 .topnav a:hover {
     background-color: #ddd;
@@ -30,17 +33,24 @@
 }
 
 /* Add an active class to highlight the current page */
-.active {
-    /*background-color: #4CAF50;*/
+ .active {
+    background-color: #4CAF50;
     background-color:#81b3c1;
     color: white;
-}
+} 
 
 /* Hide the link that should open and close the topnav on small screens */
 .topnav .icon {
     display: none;
 }
 
+/* Link for logging out of app */
+#logout{
+  float:right;
+  margin-right:150px;
+  font-size: 20px;
+  border:1px solid white;
+}
 
 /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
 @media screen and (max-width: 600px) {

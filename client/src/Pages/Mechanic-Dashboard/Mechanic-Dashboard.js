@@ -2,10 +2,13 @@ import { Input } from "../../components/Form";
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import { List, ListItem } from "../../components/List";
+import ReactDOM from 'react-dom';
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
 import Button  from '../../components/Button'
 import NAV from "../../components/Nav/NavBar"
+import { setNavType, setNavPath, setActive } from "../../NavNavigation.js"
+import App from "../../App"
 
 
 class Login extends Component {
@@ -16,7 +19,20 @@ class Login extends Component {
   	};
 	componentDidMount() {
 		this.getMechanicJobBids(localStorage.getItem('Id'));
-   		
+		if(localStorage.getItem('userType')){
+
+	  		if(localStorage.getItem('userType') === "mechanic"){
+				setNavPath("/mechanic-dashboard");
+			}
+
+			if(localStorage.getItem('userType') === "poster"){
+				setNavPath("/poster-dashboard");
+			}
+
+			setNavType("Dashboard");
+			setActive("dashboard");	
+	   		ReactDOM.render(<App />,document.getElementById('root'));
+	   	}
     }
 	
  	getMechanicJobBids = (id) =>{
@@ -86,8 +102,7 @@ class Login extends Component {
 		  
 		return (
 			<div className="login">						
-				<NAV />
-
+				
 				<div className="row">
 					<div className="col-sm-2 col-md-2 col-lg-2">
 					</div>
