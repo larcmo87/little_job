@@ -65,6 +65,17 @@ class PosterDashboard extends Component {
 		 console.log("In serchpage");
 		  this.setState({redirect: "/mechanic"});
 	};*/
+	deleteProject = (id) =>{
+		API.deleteProject(id)
+		.then(this.getPosterJobAds(localStorage.getItem('Id')))
+		.then(this.deleteBids(this.state.bids))
+	};
+
+	deleteBids = (bids) =>{
+		for (var i = 0; i < bids.length; i++) {
+			API.deleteBids(bids[i])
+		}
+	};
 
 	createJobAdHandler = () =>{
 		this.setState({
@@ -134,7 +145,10 @@ class PosterDashboard extends Component {
 		                				   <div className="title_delete">
 			                				 	<div className="job-posting-title">Job Posted by: {post.userId}  -  Starting Bid Amount: ${post.start_price}</div>
 			                				   											  		
-												<button type="button" className="btn btn-info btn-delete-post" onClick="">Delete Job</button>										          		
+												<button type="button" className="btn btn-light" onClick={() => this.deleteProject(post._id)}>
+													<span className="glyphicon glyphicon-trash">
+													</span>
+												</button>										          		
 												         	
 											</div>
 		                				   <div className="job-posting-detail">  

@@ -17,8 +17,8 @@ export default {
    return axios.get("api/location/" +  location);
   },
   // Deletes the Articles with the given id
-  deleteArticle: function(id) {
-    return axios.delete("/api/articles/" + id);
+  deleteProject: function(id) {
+    return axios.delete("/api/project/" + id);
   },
   // Saves a Article to the database
   saveUser: function(userData) {
