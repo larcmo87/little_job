@@ -1,19 +1,36 @@
 import React, { Component } from "react";
 import "./NavCSS.css";
-import {  BrowserRouter as Router, Route, Switch, Link, findDOMNode  } from "react-router-dom";
+import {getNavType} from "../../NavNavigation.js"
 
-class NavBar extends Component {
-	render() {
-		return (
-		<div className="topnav" id="myTopnav">
-		  <a href="/login" class="active">Home</a>
-		  <a href="/search">Search</a>
-		  <a href="/about">About</a>
-		  <a href="javascript:void(0);" className="icon" onClick="myFunction()">&#9776;</a>
-		</div>
-		)
-	}
+ 
+class Nav extends Component {
+
+state = {
+	type: ""
+}
+
+componentDidMount() {
+	// this.setState({
+	// 	type: NAVIGATION.getNavType()
+	// });
+
+	console.log("nave " + JSON.stringify(getNavType()));
+}
+render() {
+ return(
+ <div className="topnav" id="myTopnav">
+  <a href="#home" class="active">Home</a>
+  <a href="#news">News</a>
+  <a href="#contact">Contact</a>
+  <a href="#about">{getNavType()}</a>
+ 
+</div>
+)
+}
 };
 
-  export default NavBar;
+export default Nav;
+
+
+ 
 

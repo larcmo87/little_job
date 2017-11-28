@@ -1,15 +1,10 @@
 import { Form, Input, FormLabel, Submit } from "../../components/Form";
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import {  BrowserRouter as Router, Route, Switch, Link, findDOMNode  } from "react-router-dom";
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
-import Button  from '../../components/Button'
-import Type  from '../../components/Button'
 
 
-
-const DAY_FORMAT = 'YYYYMMDD';
 
 class Successful extends Component {
 	state = {
@@ -17,16 +12,92 @@ class Successful extends Component {
 	    userId: "",
 	    password: ""
   	};
-	
-	// Set the redirect State to redirect to the createpost page
-	redirectToCreatePost = event => {
+	// LOGIN get route = "api/login"
+	getUserByLogin = (event) => {
+		console.log("user id in userbylogin = " + this.state.userId);
+
+		//Authenticate user login id and password. 
+		API.getUserByLogin({userId:this.state.userId,password:this.state.password})
+		.then(res => {			
+			
+			//If userId/password is incorrect the do...
+			if(res.data.userId === "No user Found"){
+				this.setState({
+					userId: "",
+					password: "",
+					errorMessage:"User Id or Password Not Found!",
+					showLoginError: true
+				});
+
+			//If userId/password authenticated then do...
+			}else{
+				
+				//reset state values (userId, password, errorMessage, showLoginError)
+				this.setState({
+					userId: "",
+					password: "",
+					errorMessage:"",
+					showLoginError: false
+				});
+				//Store the user record _id in localstorage variable Id
+				localStorage.setItem('Id', res.data._id);
+				localStorage.setItem('userId', res.data.userId);
+				localStorage.setItem('userType', res.data.user_type);
+
+				//if the user type is "poster" then do...
+				if(res.data.user_type === "poster"){
+					//Redirect to the Poster-Dashboard page
+					this.redirectToPosterDashboard(event);				
+				} 
+				//if the user type is "mechanic" then do..
+				else if(res.data.user_type === "mechanic"){
+					//Redirect to the Mechanic-Dashboard page
+					this.redirectToMechanicDashboard(event);
+				}
+				console.log("loginby id respose = " + JSON.stringify(res,null,2));
+			}
+			
+		})
+		.catch(err => console.log(err));
+	};
+
+		// goes to "/poster-dashboard"
+	redirectToPosterDashboard = (event) => {
+		 event.preventDefault();
+		 console.log("In searchpage");
+		  this.setState({redirect: "/poster-dashboard"});
+	};
+
+	// goes to "/mechanic-dashboard"
+	redirectToMechanicDashboard = event => {
 		 event.preventDefault();
 		 console.log("In serchpage");
-		  this.setState({redirect: "/createpost"});
+		  this.setState({redirect: "/mechanic-dashboard"});
+	};
+
+	//===========================================
+	handleInputChange = event =>{
+		const { name, value } = event.target;
+		console.log("event target = " + name);
+	    this.setState({
+	    	[name]: value
+    	});
+	};
+
+	 handleFormSubmit = event => {
+	  	event.preventDefault();
+	  	// if (this.state.topic && this.state.beginDT && this.state.endDT) {
+	  		this.getUserByLogin(event);  
 	};
 
 	render() {
-			if (this.state.redirect === "/createpost") {
+			
+
+  			if (this.state.redirect === "/mechanic-dashboard") {
+    			return <Redirect push to={this.state.redirect} />;
+  			}
+
+  			if (this.state.redirect === "/poster-dashboard") {
     			return <Redirect push to={this.state.redirect} />;
   			}
 
@@ -59,7 +130,8 @@ class Successful extends Component {
 								  		   type="text"
 								  		   id="user-id"
 								  		   value={this.state.userId}
-								  		   name="user-id"
+								  		   name="userId"
+								  		   onChange={this.handleInputChange}
 								  		/>
 								  		<FormLabel								  		 
 								  		  text="Password"
@@ -69,13 +141,14 @@ class Successful extends Component {
 								  		   type="password"
 								  		   id="user-password"
 								  		   value={this.state.password}
-								  		   name="user-password"
+								  		   name="password"
+								  		   onChange={this.handleInputChange}
 								  		/>
 								  		
 								  		<Submit 
 								  			id="login-submit"
 								  			text="Log In"
-								  			onClick={this.redirectToCreatePost}
+								  			onClick={this.handleFormSubmit}
 								  		/>
 								  	</Form>
 								  </PanelBody>

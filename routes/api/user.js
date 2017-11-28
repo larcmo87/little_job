@@ -12,13 +12,23 @@ router.route("/userlogin")
   
 
 
-// Matches with "/api/books/:id"
+// Matches with "/api/user/:id" Used to get Poster by Id
 router
   .route("/user/:id")
   .get(usersController.findById)
   .put(usersController.update)
   .delete(usersController.remove);
 
+  // Matches with "/api/mechanic/:id" Used to get Mechanic by Id
+router
+  .route("/mechanic/:id")
+  .get(usersController.findMechanicById)
+  .put(usersController.update)
+  .delete(usersController.remove);
 
-  
+router.route("/location/:location")
+  .get(usersController.findBylocation);  
+ 
+
+
 module.exports = router;
