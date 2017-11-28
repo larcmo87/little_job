@@ -1,6 +1,10 @@
+body {
+	background-color: #EEEEEE;
+}
 #job-ad-textarea-fg > .text-area{
   height: 200px;
   resize: none;
+  border-radius: .5em;
 }
 
 #bid-start-amount{
@@ -27,21 +31,34 @@
 .job-posting-title{
 	float:left;
 	display:inline-block;
+	padding: 10px;
+	border-radius: .5em;
+	outline-color: white;
 }
 .title_delete > button{
 	float:right;
 	position:relative;
 	display:inline-block;
-	background-color: red;
+	color: white;
+}
+.poster-title {
+	margin-right: .5em;
 }
 
 .btn-delete-post:hover{	
 	background-color: green;	
 }
-
+#create-job-ad-btn {
+	margin-bottom: 20px;
+	padding-left: 4em;
+	padding-right: 4em;
+	font-size: 14pt;
+	background-color: #1f86c5;
+}
 
 #cancel-job-ad-submit{
 	margin-left:10px;
 	float:right;
 	display:inline-block;
 }
+
