@@ -1,5 +1,5 @@
 import React from "react";
-import CSS from "./footer.css";
+import "./footer.css";
 
  const Footer = () => 
   <footer style={{ height: 300 }} class="page-footer">

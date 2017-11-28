@@ -23,11 +23,14 @@ module.exports = {
           }
           res.json(response);
         }else{
+
         res.json(dbModel);  
+
         }      
       })
       .catch(err => res.status(422).json(err));
   },
+  /*FIND POSTER BY ID AND GET ALL POSTS AND BIDS THAT ARE REALTED TO POST*/
   findById: function(req, res) {
     db.User
       .findById(req.params.id)
@@ -38,9 +41,48 @@ module.exports = {
          }
          
          res.json(user.project);
-         console.log("get all projects and populate = " + user.project);
+        
        
       })
+     
+  },
+ /* FIND MECHANIC BY ID AND GET ALL BIDS AND POSTS THEY ARE RELATED TO*/
+   findMechanicById: function(req, res) {
+    db.User
+      .findById(req.params.id)
+      .populate({path : 'bid', populate : {path : 'project'}})
+      .exec((err,user) =>{
+         if(err){
+           return handleError(err);
+         }
+         console.log("Mechanic bids = " + user);
+         res.json(user);
+         //console.log("get all projects and populate = " + user.project);
+       
+      })
+     
+  },
+  /* FIND MECHANIC BY ID AND GET ALL BIDS AND POSTS THEY ARE RELATED TO*/
+   findBylocation: function(req, res) {
+    
+    db.User
+      .find({$and : [
+              {$or : [{city : req.params.location},{zip : req.params.location}]},
+              {user_type : "poster"},
+              {project : { $gt: [] }}
+            ]
+          })
+      .populate({path : 'project', populate : {path : 'bid'}})
+      .exec((err,user) =>{
+         if(err){
+           return err;
+         }
+         
+         res.json(user);
+         console.log("get all projects and populate = " + user);
+       
+      })
+      
      
   },
   create: function(req, res) {

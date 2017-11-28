@@ -1,15 +1,13 @@
 import { Form, Input, FormLabel, Submit } from "../../components/Form";
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import {  BrowserRouter as Router, Route, Switch, Link, findDOMNode  } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel';
 import Button  from '../../components/Button';
-import Type  from '../../components/Button';
+import { setNavType } from "../../NavNavigation.js"
 
 
-const DAY_FORMAT = 'YYYYMMDD';
-let showH = false;
 let errorInLineStyle = {color: "red"};  //Error login message inline style CSS
 
 class Login extends Component {
@@ -18,7 +16,8 @@ class Login extends Component {
 	    password: "",
 	    redirect: "" ,
 	    showLoginError: false,
-	    errorMessage: ""
+	    errorMessage: "",
+	    searchLocation: ""
   	};
 
   	
@@ -53,6 +52,7 @@ class Login extends Component {
 				//Store the user record _id in localstorage variable Id
 				localStorage.setItem('Id', res.data._id);
 				localStorage.setItem('userId', res.data.userId);
+				localStorage.setItem('userType', res.data.user_type);
 
 				//if the user type is "poster" then do...
 				if(res.data.user_type === "poster"){
@@ -61,6 +61,7 @@ class Login extends Component {
 				} 
 				//if the user type is "mechanic" then do..
 				else if(res.data.user_type === "mechanic"){
+					setNavType("mechanic");
 					//Redirect to the Mechanic-Dashboard page
 					this.redirectToMechanicDashboard(event);
 				}
@@ -88,18 +89,31 @@ class Login extends Component {
 	// goes to "/mechanic-dashboard"
 	redirectToMechanic = event => {
 		 event.preventDefault();
-		 console.log("In serchpage");
+		 
 		  this.setState({redirect: "/mechanic"});
 	};
 
 	// goes to "/mechanic-dashboard"
 	redirectToMechanicDashboard = event => {
-		 event.preventDefault();
-		 console.log("In serchpage");
-		  this.setState({redirect: "/mechanic-dashboard"});
+		 event.preventDefault();		 
+		 this.setState({redirect: "/mechanic-dashboard"});
 	};
 
-	//===========================================
+
+	searchPostsByLocation = () =>{
+		//Store the location in local storage item searchLocation
+		localStorage.setItem('searchLocation', this.state.searchLocation);
+		//reset state values (userId, password, errorMessage, showLoginError)
+		this.setState({
+			userId: "",
+			password: "",
+			errorMessage:"",
+			showLoginError: false,
+			redirect: "/search"
+		});
+
+	};
+	
 	handleInputChange = event =>{
 		const { name, value } = event.target;
 		console.log("event target = " + name);
@@ -129,6 +143,10 @@ class Login extends Component {
   			}
 
   			if (this.state.redirect === "/poster-dashboard") {
+    			return <Redirect push to={this.state.redirect} />;
+  			}
+
+  			if (this.state.redirect === "/search") {
     			return <Redirect push to={this.state.redirect} />;
   			}
 		  
@@ -176,10 +194,13 @@ class Login extends Component {
 							</div>
 							<div className="col-sm-8 col-md-8 col-lg-8" id="search-location-input-div">		
 								<Input
+									value={this.state.searchLocation}
+									name="searchLocation"
 									className="search"
 									type="text"
 									id="search-location"
 									placeholder="Search Location"
+									onChange={this.handleInputChange}
 								/>
 							</div>
 							<div className="col-sm-2 col-md-2 col-lg-2">		
@@ -188,7 +209,8 @@ class Login extends Component {
 										type="button"
 										text="Search"
 										id="location-search-btn"
-										className="btn btn-info btn-sm"										  	
+										className="btn btn-info btn-sm"	
+										onClick={this.searchPostsByLocation}									  	
 									/>	
 								</Link>								
 							</div>	

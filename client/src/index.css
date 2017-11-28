@@ -91,6 +91,11 @@ body {
   float:right;
 }
 
+.btn-bid{
+  display:inline-block;
+  float:right;
+}
+
 /*text area control on the CreatePost page*/
 #job-detail{
   height:100px;
@@ -114,3 +119,35 @@ body {
   margin-left:0;
 }
 
+#modal-bid-desc{
+  border: 1px solid black;
+}
+
+
+/*Bid labels and inputs on bid modal of the Search Page*/
+#bid-time{
+  width: 150px;
+  margin-right: 10px;
+ /* margin-left: 10px;*/
+}
+
+ #bid-amount{
+  width: 150px;
+   margin-left: 5px;
+  display:inline-block;
+} 
+
+.bid-label{
+  float:left;
+  display:inline-block;
+
+}
+/**********************************************************/
+
+/* //Remove the up/down arrows from inputs of type number */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+} 
+/**********************************************************/
