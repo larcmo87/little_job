@@ -17,6 +17,7 @@ class Login extends Component {
 		redirect: false
 	   
   	};
+  	
 	componentDidMount() {
 		this.getMechanicJobBids(localStorage.getItem('Id'));
 		if(localStorage.getItem('userType')){
