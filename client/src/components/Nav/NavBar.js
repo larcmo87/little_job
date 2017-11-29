@@ -2,79 +2,50 @@ import React, { Component } from "react";
 import { Redirect } from 'react-router';
 import "./NavCSS.css";
 import {getNavType,getNavPath,getActive,setActive} from "../../NavNavigation.js"
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 import Search from "../../Pages/Search";
 
-let navType = "";
+//GLOBAL VARIABLE TO SET THE LOGOFF/SIGNON LINK TEXT
+let signOnText = "Sign On";
+
 class Nav extends Component {
 
-state = {
-	signoutlinktext: "Sign On",
-	signedIn: false
-}
+	componentDidUpdate() {
 
-componentDidMount() {
-	
-	console.log("nave " + JSON.stringify(getNavType()));
-	this.handleLogOffSignInLinkText();
-};
+		//IF USER LOGGED IN THEN SET THE LOGOFF/SIGNON LINK TEXT TO "Log Off" 
+		//ELSE  SET THE LOGOFF/SIGNON LINK TEXT TO "Sign On" 
+		if(localStorage.getItem('Id') !== ""){
 
-componentDidUpdate(){
-	if(!this.state.signedIn){
+			signOnText = "Log Off";
+		}else if(localStorage.getItem('Id') === ""){
+			signOnText = "Sign On";
+		}
+	};
+
+	//CLEAR ALL OF THE LOCAL STORAGE VALUE WHEN LOGGING OFF
+	handleLogOff = () =>{
+		localStorage.setItem('Id', "");
+		localStorage.setItem('loginData', "");
+		localStorage.setItem('myData', "");
+		localStorage.setItem('searchLocation', "");
+		localStorage.setItem('userId', "");
+		localStorage.setItem('userType', "");
 		
-		this.setState({
-			signoutlinktext:"Log Off",
-			signedIn: true
-		});
+		//SET THE LOGGIN (HOME) LINK TO ACTIVE
+		setActive("login");
+	};
+
+	render() {		
+	 	return(		 
+			 <div className="topnav" id="myTopnav">
+			  <a href="/login" className={(getActive() === "login") ? "active" : ""}>Home</a>
+			  <a href="/search" className={(getActive() === "search") ? "active" : ""}>Search</a>
+			  <a href="#contact" className="">About</a>
+			  <a href={getNavPath()} className={(getActive() === "dashboard") ? "active" : ""}>{getNavType()}</a>
+			  <a href="/login" id="logout" onClick={this.handleLogOff}>{signOnText}</a>  
+			</div>
+		)
 	}
-};
-
-handleLogOffSignInLinkText = () =>{
-
-	if(localStorage.getItem('Id')){
-
-		this.setState({
-			signoutlinktext:"Log Off",
-			signedIn: false
-		});
-	}
-};
-
-handleLogOff = () =>{
-	localStorage.setItem('Id', "");
-	localStorage.setItem('loginData', "");
-	localStorage.setItem('myData', "");
-	localStorage.setItem('searchLocation', "");
-	localStorage.setItem('userId', "");
-	localStorage.setItem('userType', "");
-	this.setState({
-		signoutlinktext: "Sign On",
-		 
-	});
-	setActive("login");
-	
-
-
-};
-
-render() {
-	
- return(
- 
- <div className="topnav" id="myTopnav">
-  <a href="/login" className={(getActive() === "login") ? "active" : ""}>Home</a>
-  <a href="/search" className={(getActive() === "search") ? "active" : ""}>Search</a>
-  <a href="#contact" className="">About</a>
-  <a href={getNavPath()} className={(getActive() === "dashboard") ? "active" : ""}>{getNavType()}</a>
-  <a href="/login" id="logout" onClick={this.handleLogOff}>{this.state.signoutlinktext}</a>
-  
- 
- 
-  
-</div>
-	
-)
-}
 };
 
 export default Nav;
