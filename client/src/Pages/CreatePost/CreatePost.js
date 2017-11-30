@@ -12,10 +12,15 @@ import { FormControl, FormGroup } from 'react-bootstrap';
 class Poster extends Component {
 	
 	state = {
-		client:"",
+		client: "",
 		description: "",
 		start_price: "",
-		status: "active",	   
+		status: "active",
+		//Form Validation//
+		formErrors: {start_price: "", description: ""},
+		start_priceValid: false,
+    	descriptionValid: false,
+    	formValid: false	   
   	};
 
   	componentDidMount() {
@@ -35,7 +40,7 @@ class Poster extends Component {
 			.catch(err => console.log(err));
 	};
 
-	 
+	//OnChange input handler//
 	handleInputChange = event =>{
 		const { name, value } = event.target;
 		console.log("event target = " + name);

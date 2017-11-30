@@ -20,6 +20,9 @@ export default {
   deleteProject: function(id) {
     return axios.delete("/api/project/" + id);
   },
+  deleteBid: function(id) {
+    return axios.delete("/api/bid/" + id);
+  },
   // Saves a Article to the database
   saveUser: function(userData) {
     console.log(userData);
