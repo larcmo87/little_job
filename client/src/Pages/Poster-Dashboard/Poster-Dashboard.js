@@ -1,15 +1,12 @@
 import { Form, Input, FormLabel, Submit } from "../../components/Form";
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import ReactDOM from 'react-dom';
 import { List, ListItem } from "../../components/List";
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
 import Button  from '../../components/Button'
 import { FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 import './Poster-Dashboard.css'
-import { setNavType, setNavPath, setActive } from "../../NavNavigation.js"
-import App from "../../App"
 
 class PosterDashboard extends Component {
 	state = {
@@ -24,20 +21,6 @@ class PosterDashboard extends Component {
 	componentDidMount() {
 		
    		this.getPosterJobAds(localStorage.getItem('Id'));
-   		if(localStorage.getItem('userType')){
-
-	  		if(localStorage.getItem('userType') === "mechanic"){
-				setNavPath("/mechanic-dashboard");
-			}
-
-			if(localStorage.getItem('userType') === "poster"){
-				setNavPath("/poster-dashboard");
-			}
-
-			setNavType("Dashboard");
-			setActive("dashboard");	
-	   		//ReactDOM.render(<App />,document.getElementById('root'));
-	   	}
     }
 	
  	getPosterJobAds = (id) =>{
@@ -85,13 +68,6 @@ class PosterDashboard extends Component {
 	deleteProject = (id) =>{
 		API.deleteProject(id)
 		.then(this.getPosterJobAds(localStorage.getItem('Id')))
-		.then(this.deleteBids(this.state.bids))
-	};
-
-	deleteBids = (bids) =>{
-		for (var i = 0; i < bids.length; i++) {
-			API.deleteBids(bids[i])
-		}
 	};
 
 	createJobAdHandler = () =>{
@@ -106,22 +82,7 @@ class PosterDashboard extends Component {
 	    		desc: "",
 	    		status: "",
  				creatJobAd: false 
- 			})
-	};
-
-	handleAcceptBid = (postId, bidId) => event =>{
-		event.preventDefault();
-		console.log("Post and Bid ids = " + postId + " " + bidId );
-
-		API.postProjectBidAccept({postId:postId,bidId:bidId})
- 		/*.then(res =>{
- 			 // this.setState({posts: res.data})
- 				console.log("return bid accept " + JSON.stringify(res.data));
- 				
  		})
-
- 		.catch(err => console.log(err));*/
-
 	};
 
 	handleInputChange = event =>{
@@ -174,13 +135,10 @@ class PosterDashboard extends Component {
 		                			{this.state.posts.map(post => (
 		                				
 		                				 <ListItem key={post._id}>
-		                				   <div className="title_delete">
+		                				   	<div className="title_delete">
 			                				 	<div className="job-posting-title">Job Posted by: {post.userId}  -  Starting Bid Amount: ${post.start_price}</div>
 			                				   											  		
-												<button type="button" className="btn btn-light" onClick={() => this.deleteProject(post._id)}>
-													<span className="glyphicon glyphicon-trash">
-													</span>
-												</button>										          		
+												<button type="button" className="btn btn-info btn-delete-post" onClick={() => this.deleteProject(post._id)}>Delete Job</button>										          		
 												         	
 											</div>
 		                				   <div className="job-posting-detail">  
@@ -210,7 +168,7 @@ class PosterDashboard extends Component {
 				                							 </div>		                																						  		
 														    
 						                					<div className="btn-accept-bid">												  		
-												          		<button type="button" className="btn btn-info btn-accept-bit" onClick={this.handleAcceptBid(post._id,bid._id)}>Accept Bid</button>										          		
+												          		<button type="button" className="btn btn-info btn-accept-bit" onClick="">Accept Bid</button>										          		
 												         	</div>
 												         </div>          
 					                 				</ListItem>

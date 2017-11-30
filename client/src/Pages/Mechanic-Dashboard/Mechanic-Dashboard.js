@@ -34,8 +34,17 @@ class Login extends Component {
 			setActive("dashboard");	
 	   		ReactDOM.render(<App />,document.getElementById('root'));
 	   	}
-    }
-	
+    };
+
+	deleteBid = (id) =>{
+		API.deleteBid(id)
+		.then(res =>{
+			this.getMechanicJobBids(localStorage.getItem('Id'));
+		var deletedBid = this.state.bids.indexOf(id);
+		this.state.bids.splice(deletedBid, 1);
+		});
+	};
+
  	getMechanicJobBids = (id) =>{
  		let jobBids = [];
  		API.getMechanicById(id)
@@ -139,6 +148,7 @@ class Login extends Component {
 		                				
 		                				 <ListItem key={bid.projectId}>
 		                				 	<div className="job-posting-title">Job Posted by: {bid.userId} - Starting Bid Amount: ${bid.start_price}</div>
+
 		                				   <div className="job-posting-detail">  
 
 		                					<strong>
@@ -160,7 +170,7 @@ class Login extends Component {
 														  		Hours: {bid.bidTime}   Bid: {bid.bidAmount}														  		
 														    </div>  
 						                					<div className="btn-accept-bid">												  		
-												          		<button type="button" className="btn btn-info btn-accept-bit" onClick="">Remove Bid</button>										          		
+												          		<button type="button" className="btn btn-info btn-accept-bit" onClick={() => this.deleteBid(bid.bidId)}>Remove Bid</button>										          		
 												         	</div>
 												         </div>          
 					                 				</ListItem>					                 				
