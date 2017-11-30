@@ -38,7 +38,10 @@ export default {
   getUserByLogin: function(userData) {
     console.log("User id in API = " + JSON.stringify(userData));
     return axios.post("/api/userlogin", userData);
-
+  },
+   postProjectBidAccept: function(projectData) {
+    console.log("projectData = " + JSON.stringify(projectData));
+    return axios.post("/api/projectAcceptBid", projectData);
   }
   
 
