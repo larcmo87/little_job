@@ -1,5 +1,6 @@
 import { Form, Input, FormLabel, Submit } from "../../components/Form";
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { Redirect } from 'react-router';
 import { List, ListItem } from "../../components/List";
 import API from '../../utils/API';
@@ -7,6 +8,8 @@ import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
 import Button  from '../../components/Button'
 import { FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 import './Poster-Dashboard.css'
+import { setNavType, setNavPath, setActive } from "../../NavNavigation.js"
+import App from "../../App"
 
 class PosterDashboard extends Component {
 	state = {
@@ -21,6 +24,20 @@ class PosterDashboard extends Component {
 	componentDidMount() {
 		
    		this.getPosterJobAds(localStorage.getItem('Id'));
+   		if(localStorage.getItem('userType')){
+
+	  		if(localStorage.getItem('userType') === "mechanic"){
+				setNavPath("/mechanic-dashboard");
+			}
+
+			if(localStorage.getItem('userType') === "poster"){
+				setNavPath("/poster-dashboard");
+			}
+
+			setNavType("Dashboard");
+			setActive("dashboard");	
+	   		ReactDOM.render(<App />,document.getElementById('root'));
+	   	}
     }
 	
  	getPosterJobAds = (id) =>{

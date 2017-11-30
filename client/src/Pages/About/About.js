@@ -1,11 +1,14 @@
 import { Form, Input, FormLabel, Submit } from "../../components/Form";
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { Redirect } from 'react-router';
 import {  BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
 import Button  from '../../components/Button'
 import { FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
+import { setNavType, setNavPath, setActive } from "../../NavNavigation.js"
+import App from "../../App"
 
 const DAY_FORMAT = 'YYYYMMDD';
 
@@ -28,6 +31,35 @@ class About extends Component {
 
 	   
   	};
+
+  	componentDidMount() {
+	  	if(localStorage.getItem('userType')){
+
+	  		if(localStorage.getItem('userType') === "mechanic"){
+				setNavPath("/mechanic-dashboard");
+			}
+
+			if(localStorage.getItem('userType') === "poster"){
+				setNavPath("/poster-dashboard");
+			}
+
+			//SET THE DASHBOARD NAV LINK TO APPEAR IN THE NAV BAR
+			setNavType("Dashboard");
+
+			//SET THE SEARCH LINK ON NAV BAR TO ACTIVE
+			setActive("about");	
+
+			//FORCE THE APP TO RERENDER TO THAT THE NAV BAR UPDATES		
+	   		ReactDOM.render(<App />,document.getElementById('root'));
+	   	}else{
+	   		//SET THE SEARCH LINK ON NAV BAR TO ACTIVE
+	   		setActive("about");
+
+	   		//FORCE THE APP TO RERENDER TO THAT THE NAV BAR UPDATES	
+	   		ReactDOM.render(<App />,document.getElementById('root'));
+	   	}  	
+	  
+	};
 
   	addAbout = () => {
 		
@@ -111,22 +143,21 @@ class About extends Component {
 						  	title="About Little Job"
 						  	/>
 						  <PanelBody>
-						  	<HomeWrapper>
-							        <Header>Why use little Job?</Header>
-							        <AboutP>
+						  	<div>
+							        <h3>Why use little Job?</h3>
+							        <p>
 							        It is no secret that corporatized automotive shops will try to upsell you needless services at every opportunity.
 							        Consumers mostly have no easy way to compare value and cost of services. This leads to a seller's market for automotive maintenance.
-							        </AboutP>
-							        <AboutP>
+							        </p>
+							        <p>
 							        If you are an auto mechanic, you can make alot more money than just working for someone.
 									There is a world of money making opportunities available to you as a auto mechanic. Auto mechanics have unique skills not available to many people. You can turn your skills into money making ventures.
-							        </AboutP>
-							        <AboutP>
+							        </p>
+							        <p>
 							    	Little Job aims at facilitating connections between auto mechanics and consumers who want to find a competitive price for the services they need. Create a login and you can either post a job you need performed, or if you're a mechanic, you can bid on a job that others have posted.
-							        </AboutP>
-							        <AboutP>
-							        <StyledA href="http://www.streetdirectory.com/travel_guide/16945/business_and_finance/ways_for_auto_mechanics_to_make_extra_money.html">here</StyledA> for more info about how to make more money as a mechanic.</AboutP>
-							   </HomeWrapper>
+							        </p>
+							        <p>Click <a href="http://www.streetdirectory.com/travel_guide/16945/business_and_finance/ways_for_auto_mechanics_to_make_extra_money.html">here</a> for more info about how to make more money as a mechanic.</p>
+							   </div>
 
 						  </PanelBody>
 						</Panel>													
