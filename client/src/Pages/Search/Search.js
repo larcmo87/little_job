@@ -323,7 +323,7 @@ class Search extends Component {
             				<h6>{this.state.description}</h6>
             			</div>
             			<br/>
-            			<h5>Bid Hours: </h5>
+            			<h5>Bid Hours:</h5>
             			<div>            				
             				<Input 
             					type="number"
@@ -333,11 +333,11 @@ class Search extends Component {
             					name="bidTime"
             					onChange={this.handleInputChange}
             				/>            				
-            			</div>  			
+            			</div>
 
             			<h5>Bid Amount</h5> 
             			<div>
-            				<h5 className="bid-label">$</h5>
+            				<h5 className="bid-label"></h5>
             				<Input 
             					type="Text"
             					id="bid-amount" 

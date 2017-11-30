@@ -37,4 +37,29 @@
 
 .list-group-item{
   min-height: 70px;
+  margin: 10px;
+  padding: 10px;
+}
+
+div.job-posting-detail{
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 8px;
+}
+
+#modal-bid-desc > h6{
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body > div:nth-child(6) > div.fade.in.modal > div > div > div.modal-body > h5:nth-child(1){
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body > div:nth-child(6) > div.fade.in.modal > div > div > div.modal-body > h5:nth-child(2){
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body > div:nth-child(6) > div.fade.in.modal > div > div > div.modal-body > h5:nth-child(3){
+  font-family: Arial, Helvetica, sans-serif;
 }

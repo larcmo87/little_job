@@ -6,3 +6,7 @@ body {
 	border-radius: .5em;
 	outline-color: white;
 }
+
+input#bid-amount {
+	margin-left: 0;
+}
