@@ -9,6 +9,7 @@ import Button  from '../../components/Button';
 import { Modal } from 'react-bootstrap';
 import { setNavType, setNavPath, setActive } from "../../NavNavigation.js"
 import App from "../../App"
+import  './SearchCSS.css'
 
 class Search extends Component {
 

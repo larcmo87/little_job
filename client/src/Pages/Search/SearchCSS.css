@@ -1,12 +1,100 @@
-body {
+/* body {
 	background-color: #EEEEEE;
 }
-.job-posting-title {
+.job-posting-title{
+	float:left;
+	display:inline-block;
 	padding: 10px;
 	border-radius: .5em;
 	outline-color: white;
+	width:100%;
 }
 
 input#bid-amount {
 	margin-left: 0;
 }
+
+#job-posting-detail{
+  border: 1px solid black;
+  text-align: left;
+  height: 150px;
+  overflow-y: scroll;
+} */
+
+body {
+	background-color: #EEEEEE;
+}
+#job-ad-textarea-fg > .text-area{
+  height: 200px;
+  resize: none;
+  border-radius: .5em;
+}
+
+#bid-start-amount{
+	width: 150px;
+}
+
+#create-job-ad-submit{
+	float: right;
+	display:inline-block;
+}
+
+.bid-amt-lbl{
+	padding-left:0;
+	margin-left:0;
+	float:left;
+}
+.list-group-item{
+	border:none;
+}
+.title_delete{
+	
+	height: 50px;
+}
+.job-posting-title{
+	float:left;
+	display:inline-block;
+	padding: 10px;
+	border-radius: .5em;
+	outline-color: white;
+}
+.job-posting-detail{
+  display:inline-block;
+  border: 1px solid black;
+  text-align: left;
+  height: 150px;
+  width:100%;
+  margin-top:10px;
+  overflow-y: scroll;
+}
+.title_delete > button{
+	float:right;
+	position:relative;
+	display:inline-block;
+	color: white;
+}
+.poster-title {
+	margin-right: .5em;
+}
+
+.btn-delete-post:hover{	
+	background-color: green;	
+}
+#create-job-ad-btn {
+	margin-bottom: 20px;
+	padding-left: 4em;
+	padding-right: 4em;
+	font-size: 14pt;
+	background-color: #1f86c5;
+}
+
+#cancel-job-ad-submit{
+	margin-left:10px;
+	float:right;
+	display:inline-block;
+}
+
+
+
+
+

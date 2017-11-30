@@ -70,12 +70,12 @@ body {
 }
 
 /*Job posing in lists loop in page search*/
-.job-posting-detail{
+/* .job-posting-detail{
   border: 1px solid black;
   text-align: left;
   height: 150px;
   overflow-y: scroll;
-}
+} */
 
 .bid-items{
   margin-bottom: 20px;
