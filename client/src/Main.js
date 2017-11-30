@@ -9,6 +9,7 @@ import Poster from "./Pages/Poster";
 import PosterDashboard from "./Pages/Poster-Dashboard";
 import CreatePost from "./Pages/CreatePost";
 import Successful from "./Pages/Successful";
+import About from "./Pages/About";
 import "./index.css"
 
 
@@ -30,6 +31,7 @@ const Main = () =>
          <Route exact path="/poster-dashboard" component={PosterDashboard} /> 
          <Route exact path="/createpost" component={CreatePost} /> 
          <Route exact path="/successful" component={Successful} /> 
+         <Route exact path="/about" component={About} /> 
       </Switch>
     </div>
   </Router>;
