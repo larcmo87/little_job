@@ -36,7 +36,7 @@ class PosterDashboard extends Component {
 
 			setNavType("Dashboard");
 			setActive("dashboard");	
-	   		ReactDOM.render(<App />,document.getElementById('root'));
+	   		//ReactDOM.render(<App />,document.getElementById('root'));
 	   	}
     }
 	
@@ -107,6 +107,21 @@ class PosterDashboard extends Component {
 	    		status: "",
  				creatJobAd: false 
  			})
+	};
+
+	handleAcceptBid = (postId, bidId) => event =>{
+		event.preventDefault();
+		console.log("Post and Bid ids = " + postId + " " + bidId );
+
+		API.postProjectBidAccept({postId:postId,bidId:bidId})
+ 		/*.then(res =>{
+ 			 // this.setState({posts: res.data})
+ 				console.log("return bid accept " + JSON.stringify(res.data));
+ 				
+ 		})
+
+ 		.catch(err => console.log(err));*/
+
 	};
 
 	handleInputChange = event =>{
@@ -195,7 +210,7 @@ class PosterDashboard extends Component {
 				                							 </div>		                																						  		
 														    
 						                					<div className="btn-accept-bid">												  		
-												          		<button type="button" className="btn btn-info btn-accept-bit" onClick="">Accept Bid</button>										          		
+												          		<button type="button" className="btn btn-info btn-accept-bit" onClick={this.handleAcceptBid(post._id,bid._id)}>Accept Bid</button>										          		
 												         	</div>
 												         </div>          
 					                 				</ListItem>
