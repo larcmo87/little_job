@@ -7,7 +7,7 @@ import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
 import Button  from '../../components/Button'
 import { FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
-import { setNavType, setNavPath, setActive } from "../../NavNavigation.js"
+import { setNavType, setNavPath, setActive, setLogOffOnText } from "../../NavNavigation.js"
 import App from "../../App"
 
 const DAY_FORMAT = 'YYYYMMDD';
@@ -33,6 +33,13 @@ class About extends Component {
   	};
 
   	componentDidMount() {
+
+  		if(localStorage.getItem('Id')){
+			setLogOffOnText("Log Off");
+		}else{
+			setLogOffOnText("Sign On");
+		}
+
 	  	if(localStorage.getItem('userType')){
 
 	  		if(localStorage.getItem('userType') === "mechanic"){

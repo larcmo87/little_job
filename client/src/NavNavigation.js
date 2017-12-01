@@ -1,6 +1,7 @@
 let typeNavigation = "";
 let navigateTo = "";
 let activeLink = "";
+let logOnOffText = "";
 
 
 export function getNavType(){
@@ -26,4 +27,15 @@ export function getActive(){
 export function setActive(link){
 	activeLink = link;
 }
+
+
+export function getLogOffOnText(){
+	return logOnOffText;
+}
+
+export function setLogOffOnText(text){
+	logOnOffText = text;
+}
+
+
 
