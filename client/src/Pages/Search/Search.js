@@ -180,7 +180,7 @@ class Search extends Component {
 		
 	};
 
-	//POST BID AFTER ENTING BID INFO IN THE BID MODAL
+	//POST BID AFTER ENTERING BID INFO IN THE BID MODAL
 	postBid = () =>{
 		let Id = localStorage.getItem('Id');
 		let userId = localStorage.getItem('userId');

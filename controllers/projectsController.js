@@ -16,7 +16,39 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
- 
+  findOne: function(req, res) {
+    console.log("testing findOne Accept bid... req: " + JSON.stringify(req.body));
+
+    //FIND THE PROJECT BY ID
+    db.Project
+      .findOne({_id:req.body.postId})
+      .then(dbModel => {
+        console.log(dbModel);
+        console.log("dbModel.bid.length " + dbModel.bid.length);
+
+        for(let i = 0; i < dbModel.bid.length; i++){
+          console.log("dbModel.bid[i] = " + dbModel.bid[i]);
+          console.log("req.bidId = " + req.body.bidId);
+          if(dbModel.bid[i] == req.body.bidId){
+            db.Bid
+              .findOneAndUpdate({ _id: dbModel.bid[i] }, {accepted: true})
+              .then(dbBidModel => {
+                  res.json(dbBidModel);
+                })
+              .catch(err => res.status(422).json(err));
+          }else{
+            db.Bid
+              .findOneAndUpdate({ _id: dbModel.bid[i] }, {accepted: false})
+              .then(dbBidModel =>{
+                  res.json(dbBidModel);
+                })
+              
+              .catch(err => res.status(422).json(err));
+          }
+        } 
+      })      
+      .catch(err => res.status(422).json(err));
+  }, 
   create: function(req, res) {   
     console.log("In the create route of projects req = " + JSON.stringify(req.body)) ;
     db.Project

@@ -6,6 +6,9 @@ router.route("/project")
   .get(projectsController.findAll)
   .post(projectsController.create);
 
+router.route("/projectAcceptBid")  
+  .post(projectsController.findOne);
+
 // Matches with "/api/project/:id"
 router.route("/project/:id")
   .get(projectsController.findById)
