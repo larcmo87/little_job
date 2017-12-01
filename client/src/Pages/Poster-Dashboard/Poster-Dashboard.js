@@ -107,7 +107,7 @@ class PosterDashboard extends Component {
 		console.log("accept bid post id = " + postId);
 		console.log("accept bid post bid id = " + bidId);
 		API.postProjectBidAccept({postId:postId, bidId:bidId})
-		.then()
+		.then(this.getPosterJobAds(localStorage.getItem('Id')))
 
 	};
 
@@ -181,24 +181,66 @@ class PosterDashboard extends Component {
 									  		{(post.bid.length ) ? (
 										  		<List id="job-bid">
 						                			{/*{this.props.searchResult.map(result => (*/}
-						                			{post.bid.map(bid => (	
-					                				 <ListItem key={bid._id}> 
-						                				 <div className="bid-items">       									                					
-				                							<div className="bid-description">
-					                							 <div className="bid-amt-lbl">
-					                							 	<label>Bid Amount: {bid.price}</label>
-					                							 </div>
-					                							 <div>
-					                							 	<label>Bid Time(Hrs/Day): {bid.time}</label>
-					                							 </div>
-				                							 </div>		                																						  		
-														    
-						                					<div className="btn-accept-bid">												  		
-												          		<button type="button" className="btn btn-info btn-accept-bit" onClick={this.handleAcceptBid(post._id,bid._id)}>Accept Bid</button>										          		
-												         	</div>
-												         </div>          
-					                 				</ListItem>
+							                		{post.bid.map(bid => (	
+							                			(bid.accepted == null) ? (
+							                				<ListItem key={bid._id}> 
+								                				 <div className="bid-items">       									                					
+						                							<div className="bid-description">
+							                							 <div className="bid-amt-lbl">
+							                							 	<label>Bid Amount: {bid.price}</label>
+							                							 </div>
+							                							 <div>
+							                							 	<label>Bid Time(Hrs/Day): {bid.time}</label>
+							                							 </div>
+						                							</div>		                																						  		
+															   		
+															    	<div className="btn-accept-bid">												  		
+													          			<button type="button" className="btn btn-info btn-accept-bit" onClick={this.handleAcceptBid(post._id,bid._id)}>Accept Bid</button>										          		
+													         		</div>
+														         </div>          
+								                				
+							                 				</ListItem>
+					                 					) : (
+					                 						(bid.accepted == "true") ? (
 
+					                 							<ListItem key={bid._id}> 
+									                				 <div className="bid-items">       									                					
+							                							<div className="bid-description">
+								                							 <div className="bid-amt-lbl">
+								                							 	<label>Bid Amount: {bid.price}</label>
+								                							 </div>
+								                							 <div>
+								                							 	<label>Bid Time(Hrs/Day): {bid.time}</label>
+								                							 </div>											   	 	
+																	   	 
+							                							 </div>	
+							                							 <div id="accepted-bid">	                																						  		
+																	   	 	<h4>Winning Bid!</h4>
+																	     </div>	
+															         </div>          
+								                				
+							                 					</ListItem>
+
+					                 						) : (
+					                 							<ListItem key={bid._id} style="background-color: red"> 
+									                				 <div className="bid-items">       									                					
+							                							<div className="bid-description">
+								                							 <div className="bid-amt-lbl">
+								                							 	<label>Bid Amount: {bid.price}</label>
+								                							 </div>
+								                							 <div>
+								                							 	<label>Bid Time(Hrs/Day): {bid.time}</label>
+								                							 </div>
+							                							</div>		                																						  		
+																	   	<div id="losing-bid">	                																						  		
+																	   	 	<h4>Losing Bid</h4>
+																	    </div>
+															         </div>          
+								                				
+							                 					</ListItem>
+					                 						)			
+
+					                 					)
 						                			))}
 						              			</List>	
 						              			) : (<div></div>)}

@@ -130,7 +130,7 @@ class Search extends Component {
  			});
  				
  			//SET THE POSTS ARRAY STATE	
- 			this.setState({posts: searchPosts,searchlocation: ""})
+ 			this.setState({posts: searchPosts})
  			
  		})//END OF THEN
  		.catch(err => console.log(err));

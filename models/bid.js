@@ -15,7 +15,7 @@ const bidSchema = new Schema({
 		type: String,
 		rrequired: true
 	},
-	accepted: { type: Boolean},
+	accepted: { type: String},
 	// project is a child of the bid	
 	project: {
 		type: Schema.Types.ObjectId,

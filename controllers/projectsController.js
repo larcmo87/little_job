@@ -31,16 +31,16 @@ module.exports = {
           console.log("req.bidId = " + req.body.bidId);
           if(dbModel.bid[i] == req.body.bidId){
             db.Bid
-              .findOneAndUpdate({ _id: dbModel.bid[i] }, {accepted: true})
+              .findOneAndUpdate({ _id: dbModel.bid[i] }, {accepted: "true"})
               .then(dbBidModel => {
-                  res.json(dbBidModel);
+                 // res.json(dbBidModel);
                 })
               .catch(err => res.status(422).json(err));
           }else{
             db.Bid
-              .findOneAndUpdate({ _id: dbModel.bid[i] }, {accepted: false})
+              .findOneAndUpdate({ _id: dbModel.bid[i] }, {accepted: "false"})
               .then(dbBidModel =>{
-                  res.json(dbBidModel);
+                 // res.json(dbBidModel);
                 })
               
               .catch(err => res.status(422).json(err));
