@@ -8,7 +8,7 @@ import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
 import Button  from '../../components/Button'
 import { FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 import './Poster-Dashboard.css'
-import { setNavType, setNavPath, setActive } from "../../NavNavigation.js"
+import { setNavType, setNavPath, setActive, setLogOffOnText} from "../../NavNavigation.js"
 import App from "../../App"
 
 class PosterDashboard extends Component {
@@ -23,7 +23,16 @@ class PosterDashboard extends Component {
   	};
 	componentDidMount() {
 		
+   		
+
    		this.getPosterJobAds(localStorage.getItem('Id'));
+		
+		if(localStorage.getItem('Id')){
+			setLogOffOnText("Log Off");
+		}else{
+			setLogOffOnText("Sign On");
+		}
+
    		if(localStorage.getItem('userType')){
 
 	  		if(localStorage.getItem('userType') === "mechanic"){

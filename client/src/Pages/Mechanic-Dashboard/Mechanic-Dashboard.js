@@ -7,8 +7,9 @@ import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
 import Button  from '../../components/Button'
 import NAV from "../../components/Nav/NavBar"
-import { setNavType, setNavPath, setActive } from "../../NavNavigation.js"
+import { setNavType, setNavPath, setActive, setLogOffOnText } from "../../NavNavigation.js"
 import App from "../../App"
+import './Mechanic-DashboardCSS.css'
 
 
 class Login extends Component {
@@ -21,6 +22,13 @@ class Login extends Component {
   	
 	componentDidMount() {
 		this.getMechanicJobBids(localStorage.getItem('Id'));
+
+		if(localStorage.getItem('Id')){
+			setLogOffOnText("Log Off");
+		}else{
+			setLogOffOnText("Sign On");
+		}
+
 		if(localStorage.getItem('userType')){
 
 	  		if(localStorage.getItem('userType') === "mechanic"){
@@ -195,25 +203,21 @@ class Login extends Component {
 						                			) : (
 						                				(bid.accepted == "true") ? ( 
 						                					<ListItem key=""> 
-								                				 <div className="bid-items">       									                					
-						                							<div className="bid-description">				                								
-																  		Hours: {bid.bidTime}   Bid: {bid.bidAmount}														  		
-																    </div>  
-								                					<div id="accepted-bid">	                																						  		
-																	   	<h4>Winning Bid!</h4>
-																	</div>
+								                				 <div className="bid-items" style={{backgroundColor:'green', color:'white'}}>       									                					
+						                							<div className="accepted-bid-description" >				                								
+																  		Hours: {bid.bidTime}   Bid: ${bid.bidAmount}	<span>Congradulations! Your Bid WON! Job poster will be contacting you soon.</span>	
+																    </div> 
+
 														         </div>				                			
 					                 						</ListItem>	
 						                				) : (
 						                					<ListItem key=""> 
-								                				 <div className="bid-items">       									                					
-						                							<div className="bid-description">				                								
-																  		Hours: {bid.bidTime}   Bid: {bid.bidAmount}														  		
-																    </div>  
-								                					<div id="losing-bid">	                																						  		
-																	   	<h4>Bid Was Not Accepted</h4>
-																	</div>
-														         </div>				                			
+								                				<div className="bid-items" style={{backgroundColor:'red', color:'white'}}>       									                					
+						                							<div className="accepted-bid-description" >				                								
+																  		Hours: {bid.bidTime}   Bid: ${bid.bidAmount}	<span>Job Closed. Sorry, your bid was not accepted.</span>	
+																    </div> 
+
+														         </div>			                			
 					                 						</ListItem>	
 						                				)					                				
 					                 				)}				                 				

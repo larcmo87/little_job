@@ -1,26 +1,13 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router';
 import "./NavCSS.css";
-import {getNavType,getNavPath,getActive,setActive} from "../../NavNavigation.js"
+import {getNavType,getNavPath,getActive,setActive,getLogOffOnText} from "../../NavNavigation.js"
 
 import Search from "../../Pages/Search";
 
-//GLOBAL VARIABLE TO SET THE LOGOFF/SIGNON LINK TEXT
-let signOnText = "Sign On";
 
 class Nav extends Component {
-
-	componentDidUpdate() {
-
-		//IF USER LOGGED IN THEN SET THE LOGOFF/SIGNON LINK TEXT TO "Log Off" 
-		//ELSE  SET THE LOGOFF/SIGNON LINK TEXT TO "Sign On" 
-		if(localStorage.getItem('Id') !== ""){
-
-			signOnText = "Log Off";
-		}else if(localStorage.getItem('Id') === ""){
-			signOnText = "Sign On";
-		}
-	};
+	
 
 	//CLEAR ALL OF THE LOCAL STORAGE VALUE WHEN LOGGING OFF
 	handleLogOff = () =>{
@@ -38,11 +25,20 @@ class Nav extends Component {
 	render() {		
 	 	return(		 
 			 <div className="topnav" id="myTopnav">
-			  <a href="/login" className={(getActive() === "login") ? "active" : ""}>Home</a>
-			  <a href="/search" className={(getActive() === "search") ? "active" : ""}>Search</a>
-			  <a href="/about" className={(getActive() === "about") ? "active" : ""}>About</a>
-			  <a href={getNavPath()} className={(getActive() === "dashboard") ? "active" : ""}>{getNavType()}</a>
-			  <a href="/login" id="logout" onClick={this.handleLogOff}>{signOnText}</a>  
+			 <div className="row">
+				<div className="col-sm-4 col-md-4 col-lg-4">
+				   <a href="/login" className={(getActive() === "login") ? "active" : ""}>Home</a>
+				  <a href="/search" className={(getActive() === "search") ? "active" : ""}>Search</a>
+				  <a href="/about" className={(getActive() === "about") ? "active" : ""}>About</a>
+				  <a href={getNavPath()} className={(getActive() === "dashboard") ? "active" : ""}>{getNavType()}</a>
+			  	</div>
+			  	<div className="col-sm-4 col-md-4 col-lg-4 span-col">
+			  		<span id="descpt-span">Auto Mechaic Freelance Site</span>
+			  	</div>
+				<div className="col-sm-4 col-md-4 col-lg-4">
+			  		<a href="/login" id="logout" onClick={this.handleLogOff}>{getLogOffOnText()}</a>   
+			  	</div>
+			  </div>
 			</div>
 		)
 	}

@@ -7,7 +7,7 @@ import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel';
 import Button  from '../../components/Button';
 import { Modal } from 'react-bootstrap';
-import { setNavType, setNavPath, setActive } from "../../NavNavigation.js"
+import { setNavType, setNavPath, setActive, setLogOffOnText } from "../../NavNavigation.js"
 import App from "../../App"
 import  './SearchCSS.css'
 
@@ -28,7 +28,12 @@ class Search extends Component {
 	   
   	};
 	componentDidMount() {
-		console.log("in did mount of serch");
+		
+		if(localStorage.getItem('Id')){
+			setLogOffOnText("Log Off");
+		}else{
+			setLogOffOnText("Sign On");
+		}
 
 		//IF SEARCH LOCATION IS NOT NULL THEN DO...
 		if(localStorage.getItem('searchLocation') !== null){

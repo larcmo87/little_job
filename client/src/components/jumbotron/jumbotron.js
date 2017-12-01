@@ -4,7 +4,10 @@ import NAV from "../Nav/NavBar"
 
  const Jumbotron = () =>
   <div style={{ height: 300 }} className="jumbotron">
-    <h1>little <br/><span id='litte-job'> job</span></h1>
+    <div>
+    	
+  		<h1>little <br/><span id='litte-job'> Job</span></h1>
+  	</div>
     <NAV />   
   </div>;
 

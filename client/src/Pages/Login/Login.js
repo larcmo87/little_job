@@ -6,7 +6,7 @@ import {  Link } from "react-router-dom";
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel';
 import Button  from '../../components/Button';
-import { setNavType, setNavPath, setActive } from "../../NavNavigation.js"
+import { setNavType, setNavPath, setActive, setLogOffOnText } from "../../NavNavigation.js"
 import NAV from "../../components/Nav/NavBar"
 import App from "../../App"
 
@@ -25,6 +25,13 @@ class Login extends Component {
 	    searchLocation: ""
   	};
   	componentDidMount() {
+
+  		if(localStorage.getItem('Id')){
+			setLogOffOnText("Log Off");
+		}else{
+			setLogOffOnText("Sign On");
+		}
+
 	  	if(localStorage.getItem('userType')){
 
 	  		if(localStorage.getItem('userType') === "mechanic"){
@@ -230,8 +237,7 @@ class Login extends Component {
 						      </div>					      
 						    </div>
 						  </div>
-						</div>{/*End of Modal Component*/}
-						
+						</div>{/*End of Modal Component*/}						
 
 				<div className="row">
 					<div className="col-sm-2 col-md-2 col-lg-2">
@@ -239,7 +245,7 @@ class Login extends Component {
 					<div className="col-sm-8 col-md-8 col-lg-8">													
 						<div className="row">
 							<div className="col-sm-2 col-md-2 col-lg-2">																		
-								<label id="search-location-lbl">Work Ads:</label>
+								<label id="search-location-lbl">Job Ads:</label>
 							</div>
 							<div className="col-sm-8 col-md-8 col-lg-8" id="search-location-input-div">		
 								<Input
@@ -269,15 +275,15 @@ class Login extends Component {
 						{(this.state.showLoginError) ? (
 							<div className="row login-error-row">
 								<div className="col-sm-6 col-md-6 col-lg-6 login-error-col">
-	        								<h3 className="login-error" style={errorInLineStyle}>
-	        									{this.state.errorMessage}
-	        								</h3>
+    								<h3 className="login-error" style={errorInLineStyle}>
+    									{this.state.errorMessage}
+    								</h3>
 	        					</div>		
 							</div>
-	        							) : <div className="row">
-								<div className="col-sm-12 col-md-12 col-lg-12">
-										  <h3>   </h3>
-	        					</div>		
+						) : <div className="row">
+							<div className="col-sm-12 col-md-12 col-lg-12">
+									  <h3>   </h3>
+        					</div>		
 							</div>
 						}
 	        					

@@ -4,14 +4,18 @@
 	background-position: center center; 
     background-repeat: no-repeat;
 
+
 }
 
 .jumbotron h1 {
+
 	color: white;
 	font-family: 'Autour One', cursive;
 	margin-top:0;
+
 }
 
 .jumbotron h1 span {
 	padding-left: 150px;
 }
+

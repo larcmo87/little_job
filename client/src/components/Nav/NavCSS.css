@@ -1,3 +1,5 @@
+
+
 /* Add a black background color to the top navigation */
 .topnav {
     background-color: #333;
@@ -23,7 +25,8 @@
 
 }
 
-.topnav a:active{background-color:#81b3c1;
+.topnav a:active{b
+  background-color:#81b3c1;
     color: white;}
 
 /* Change the color of links on hover */
@@ -31,6 +34,29 @@
     background-color: #ddd;
     color: black;
 }
+
+.span-col{
+   margin:auto;
+}
+#descpt-span {
+  color: black;
+  background-color: #333;  
+  padding-top:20px;
+  color:white;
+  font-size: 30px;
+  
+  /*height:40px;*/
+  
+}
+/* #descpt-span:hover {
+  color: black;
+  background-color: #333;
+  margin-left: 30%;
+  color:white;
+  
+  height:40px;
+  
+} */
 
 /* Add an active class to highlight the current page */
  .active {
@@ -45,12 +71,132 @@
 }
 
 /* Link for logging out of app */
-#logout{
+ #logout{
   float:right;
   margin-right:150px;
   font-size: 20px;
   border:1px solid white;
+} 
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 1280px) {
+ /*  .topnav a:not(:first-child) {display: none;}
+ .topnav a.icon {
+   float: right;
+   display: block;
+ } */
+  #descpt-span {
+  color: black;
+  background-color: #333;  
+  padding-top:20px;
+  color:white;
+  font-size: 28px;
+  
+  /*height:40px;*/
+  
+  }
 }
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 1152px) {
+ .topnav {   
+    margin-top: 57px;   
+  }
+  .topnav a {
+    
+    font-size:8px;
+   
+
+}
+  #descpt-span {
+  color: black;
+  background-color: #333;  
+  margin:auto;
+  color:white;
+  font-size: 25px;
+  
+  }
+   #logout{
+    float:right;
+    margin-right:75px;
+    font-size: 15px;
+    border:1px solid white;
+  } 
+}
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 1226px) {
+  .topnav {   
+    margin-top: 57px;   
+  }
+ /* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size:10px;
+    font-family: 'Autour One', cursive;
+
+}
+  #descpt-span {
+  color: black;
+  background-color: #333;  
+  margin:auto;
+  color:white;
+  font-size: 20px;
+  
+  }
+   #logout{
+    float:right;
+    margin-right:75px;
+    font-size: 10px;
+    border:1px solid white;
+  } 
+}
+@media screen and (max-width: 980px) {
+  .topnav {   
+    margin-top: 57px;   
+  }
+ /* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 10px;
+    font-family: 'Autour One', cursive;
+
+}
+  #descpt-span {
+  color: black;
+  background-color: #333;  
+  margin:auto;
+  color:white;
+  font-size: 20px;
+  
+  }
+   #logout{
+    float:right;
+    margin-right:75px;
+    font-size: 10px;
+    border:1px solid white;
+  } 
+}
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+
+}
+
 
 /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
 @media screen and (max-width: 600px) {
@@ -59,6 +205,7 @@
     float: right;
     display: block;
   }
+
 }
 
 /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
