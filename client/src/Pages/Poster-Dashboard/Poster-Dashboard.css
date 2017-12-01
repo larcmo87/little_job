@@ -62,3 +62,27 @@ body {
 	display:inline-block;
 }
 
+#accepted-bid{
+	background-color: green;
+	width:200px;
+	display:inline-block;
+	padding-bottom: 5px;
+}
+
+#accepted-bid h4{
+	color:white;
+
+}
+
+#losing-bid{
+	background-color: red;
+	width:200px;
+	display:inline-block;
+	padding-bottom: 5px;
+}
+
+#losing-bid h4{
+	color:white;
+
+}
+
