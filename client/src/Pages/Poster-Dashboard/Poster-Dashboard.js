@@ -102,6 +102,15 @@ class PosterDashboard extends Component {
  		})
 	};
 
+	handleAcceptBid = (postId, bidId) => event =>{
+		event.preventDefault();
+		console.log("accept bid post id = " + postId);
+		console.log("accept bid post bid id = " + bidId);
+		API.postProjectBidAccept({postId:postId, bidId:bidId})
+		.then()
+
+	};
+
 	handleInputChange = event =>{
 		const { name, value } = event.target;
 		console.log("event target = " + name);
@@ -185,7 +194,7 @@ class PosterDashboard extends Component {
 				                							 </div>		                																						  		
 														    
 						                					<div className="btn-accept-bid">												  		
-												          		<button type="button" className="btn btn-info btn-accept-bit" onClick="">Accept Bid</button>										          		
+												          		<button type="button" className="btn btn-info btn-accept-bit" onClick={this.handleAcceptBid(post._id,bid._id)}>Accept Bid</button>										          		
 												         	</div>
 												         </div>          
 					                 				</ListItem>
