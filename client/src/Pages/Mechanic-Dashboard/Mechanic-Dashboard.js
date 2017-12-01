@@ -14,7 +14,8 @@ import App from "../../App"
 class Login extends Component {
 	state = {
 		bids: [],
-		redirect: false
+		redirect: false,
+		searchlocation: ""
 	   
   	};
   	
@@ -64,7 +65,8 @@ class Login extends Component {
 			 			start_price:"",
 			 			description: "",
 			 			bidTime: "",
-			 			bidAmount: ""
+			 			bidAmount: "",
+			 			accepted: "",
 			 			
 			 		};
 			 		if(bid.project !== null){
@@ -78,6 +80,7 @@ class Login extends Component {
 					mechanicProjectBids.bidId = bid._id;					
 					mechanicProjectBids.bidTime =  bid.time;
 					mechanicProjectBids.bidAmount =  bid.price;	
+					mechanicProjectBids.accepted =  bid.accepted;	
 
 					jobBids.push(mechanicProjectBids);		
 				// }	
@@ -94,7 +97,7 @@ class Login extends Component {
 
  	searchPostsByLocation = () =>{
 		//Store the location in local storage item searchLocation
-		localStorage.setItem('searchLocation', this.state.searchLocation);
+		localStorage.setItem('searchLocation', this.state.searchlocation);
 		//reset state values (userId, password, errorMessage, showLoginError)
 		this.setState({
 			userId: "",
@@ -103,6 +106,17 @@ class Login extends Component {
 			showLoginError: false,
 			redirect: "/search"
 		});
+	};
+
+	//SET STATE OF THE COMPONENT THAT HAS A ONCHANGE EVENT
+	handleInputChange = event =>{
+		const { name, value } = event.target;
+		console.log("event target = " + name);
+	    this.setState({
+	    	[name]: value
+    	});
+
+    	
 	};
 
 	render() {
@@ -123,11 +137,14 @@ class Login extends Component {
 							</div>
 							<div className="col-sm-8 col-md-8 col-lg-8">		
 								<Input
+									value={this.state.searchlocation}
+									name="searchlocation"
 									className="search"
 									type="text"
 									id="search-location"
 									placeholder="Search Location"
-									onClick={this.searchPostsByLocation}
+									onChange={this.handleInputChange}
+									
 								/>
 							</div>
 							<div className="col-sm-2 col-md-2 col-lg-2">		
@@ -135,7 +152,8 @@ class Login extends Component {
 									type="button"
 									text="Search"
 									id="location-search-btn"
-									className="btn btn-info btn-sm"										  	
+									className="btn btn-info btn-sm"	
+									onClick={this.searchPostsByLocation}									  	
 								/>									
 							</div>	
 							
@@ -163,17 +181,42 @@ class Login extends Component {
 									  		<PanelBody>
 										  		<List id="job-bid">
 						                			{/*{this.props.searchResult.map(result => (*/}
-						                				
-					                				 <ListItem key=""> 
-						                				 <div className="bid-items">       									                					
-				                							<div className="bid-description">				                								
-														  		Hours: {bid.bidTime}   Bid: {bid.bidAmount}														  		
-														    </div>  
-						                					<div className="btn-accept-bid">												  		
-												          		<button type="button" className="btn btn-info btn-accept-bit" onClick={() => this.deleteBid(bid.bidId)}>Remove Bid</button>										          		
-												         	</div>
-												         </div>          
-					                 				</ListItem>					                 				
+						                			{(bid.accepted == null) ? (
+						                				<ListItem key=""> 
+							                				 <div className="bid-items">       									                					
+					                							<div className="bid-description">				                								
+															  		Hours: {bid.bidTime}   Bid: {bid.bidAmount}														  		
+															    </div>  
+							                					<div className="btn-accept-bid">												  		
+													          		<button type="button" className="btn btn-info btn-accept-bit" onClick={() => this.deleteBid(bid.bidId)}>Remove Bid</button>										          		
+													         	</div>
+													         </div>				                			
+					                 					</ListItem>	
+						                			) : (
+						                				(bid.accepted == "true") ? ( 
+						                					<ListItem key=""> 
+								                				 <div className="bid-items">       									                					
+						                							<div className="bid-description">				                								
+																  		Hours: {bid.bidTime}   Bid: {bid.bidAmount}														  		
+																    </div>  
+								                					<div id="accepted-bid">	                																						  		
+																	   	<h4>Winning Bid!</h4>
+																	</div>
+														         </div>				                			
+					                 						</ListItem>	
+						                				) : (
+						                					<ListItem key=""> 
+								                				 <div className="bid-items">       									                					
+						                							<div className="bid-description">				                								
+																  		Hours: {bid.bidTime}   Bid: {bid.bidAmount}														  		
+																    </div>  
+								                					<div id="losing-bid">	                																						  		
+																	   	<h4>Bid Was Not Accepted</h4>
+																	</div>
+														         </div>				                			
+					                 						</ListItem>	
+						                				)					                				
+					                 				)}				                 				
 						              			</List>	
 							              	</PanelBody>
 							              </Panel>							           
