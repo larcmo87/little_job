@@ -1,16 +1,11 @@
-import { Form, Input, FormLabel, Submit } from "../../components/Form";
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Redirect } from 'react-router';
-import {  BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel'
-import Button  from '../../components/Button'
-import { FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 import { setNavType, setNavPath, setActive, setLogOffOnText } from "../../NavNavigation.js"
 import App from "../../App"
-
-const DAY_FORMAT = 'YYYYMMDD';
 
 class About extends Component {
 
@@ -104,7 +99,7 @@ class About extends Component {
 				});
 				
 
-				this.redirectToSuccessful
+				this.redirectToSuccessful()
 			})
 			.catch(err => console.log(err));
 		};
@@ -122,7 +117,6 @@ class About extends Component {
 	    	[name]: value
     	});
 
-    	console.log
     };
 
     handleFormSubmit = event => {

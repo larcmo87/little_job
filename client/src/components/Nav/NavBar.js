@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import { Redirect } from 'react-router';
 import "./NavCSS.css";
 import {getNavType,getNavPath,getActive,setActive,getLogOffOnText} from "../../NavNavigation.js"
-
-import Search from "../../Pages/Search";
 
 
 class Nav extends Component {

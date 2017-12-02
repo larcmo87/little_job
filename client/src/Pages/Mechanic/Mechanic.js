@@ -71,6 +71,81 @@ class Mechanic extends Component {
 			.catch(err => console.log(err));
 	};
 
+	handleSubmitValidation = () =>{
+		
+			if(this.state.userId === ""){
+				console.log("In the useid get by");
+				window.setTimeout(function () { 
+				document.getElementById("user-id").focus();
+				document.getElementById("user-id").style.backgroundColor="yellow";
+				},0);
+
+				return false;
+			}else if(this.state.userId.length < 6){
+				
+				window.setTimeout(function () { 
+				document.getElementById("user-id").focus();
+				document.getElementById("user-id").style.backgroundColor="yellow";
+				document.getElementById("user-id").value = "";
+				
+				},0);
+
+				return false;
+			}else if(this.state.password === ""){
+				console.log("In the useid get by");
+				window.setTimeout(function () { 
+				document.getElementById("user-password").focus();
+				document.getElementById("user-password").style.backgroundColor="yellow";
+				},0);
+				return false;
+			}else if(this.state.username === ""){
+				console.log("In the useid get by");
+				window.setTimeout(function () { 
+				document.getElementById("name").focus();
+				document.getElementById("name").style.backgroundColor="yellow";
+				},0);
+				return false;
+			}else if(this.state.username === ""){
+				console.log("In the useid get by");
+				window.setTimeout(function () { 
+				document.getElementById("phone-number").focus();
+				document.getElementById("phone-number").style.backgroundColor="yellow";
+				},0);
+				return false;
+			}else if(this.state.email === ""){
+				console.log("In the useid get by");
+				window.setTimeout(function () { 
+				document.getElementById("email").focus();
+				document.getElementById("email").style.backgroundColor="yellow";
+				},0);
+				return false;
+			}else if(this.state.city === ""){
+				console.log("In the useid get by");
+				window.setTimeout(function () { 
+				document.getElementById("city").focus();
+				document.getElementById("city").style.backgroundColor="yellow";
+				},0);
+				return false;
+			}else if(this.state.state === ""){
+				console.log("In the useid get by");
+				window.setTimeout(function () { 
+				document.getElementById("state").focus();
+				document.getElementById("state").style.backgroundColor="yellow";
+				},0);
+				return false;
+			}else if(this.state.zip === ""){
+				console.log("In the useid get by");
+				window.setTimeout(function () { 
+				document.getElementById("zip").focus();
+				document.getElementById("zip").style.backgroundColor="yellow";
+				},0);
+				return false;
+			}else{
+				return true;
+			}
+			
+	};
+
 	handleInputChange = event =>{
 		const { name, value } = event.target;
 		console.log("event target = " + name);
@@ -84,8 +159,11 @@ class Mechanic extends Component {
      handleFormSubmit = event => {
 	  	event.preventDefault();
 	  	// if (this.state.topic && this.state.beginDT && this.state.endDT) {
+	  		let sendUser = this.handleSubmitValidation();
+	  		if(sendUser === true){
 	  		this.addMechanic(this.state.userId, this.state.username, this.state.password,this.state.user_type,
 	  			this.state.email,this.state.phone_number,this.state.credentials,this.state.address,this.state.city,this.state.state,this.state.zip);
+	  		};
 	   		console.log("states = " + JSON.stringify(this.state, null, 2));
 	   // }
 	  };
@@ -126,6 +204,9 @@ class Mechanic extends Component {
 						  		   type="text"
 						  		   id="user-id"
 						  		   onChange={this.handleInputChange} 
+						  		   placeholder="Must be 6 to 12 characters long"
+						  		   maxlength="12"
+						  		   pattern=".{6,12}"
 						  		/>
 						  		<FormLabel
 						  		  
@@ -157,6 +238,7 @@ class Mechanic extends Component {
 						  			name="phone_number"
 						  		   type="text"
 						  		   id="phone-number"
+						  		   placeholder="(555) 555-5555 or 555-555-5555"
 						  		/>
 						  		<FormLabel
 						  		  
@@ -168,6 +250,7 @@ class Mechanic extends Component {
 						  			name="email"
 						  		   type="email"
 						  		   id="email"
+						  		   placeholder="Format: userEmail@email.com"
 						  		   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
 						  		/>
 						  		<FormLabel
@@ -255,6 +338,7 @@ class Mechanic extends Component {
 					  			   name="zip"
 						  		   type="text"
 						  		   id="zip"
+						  		   placeholder="90210"
 						  		/>
 								<FormLabel
 								  for="qualifications"

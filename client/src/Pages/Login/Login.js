@@ -7,7 +7,7 @@ import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel';
 import Button  from '../../components/Button';
 import { setNavType, setNavPath, setActive, setLogOffOnText } from "../../NavNavigation.js"
-import NAV from "../../components/Nav/NavBar"
+
 import App from "../../App"
 
 

@@ -21,8 +21,8 @@ class Poster extends Component {
 		address: "",
 		city: "",
 		state: "",
-		zip: ""
-
+		zip: "",
+		submitUser: false
 	   
   	};
   	// CREATE
@@ -71,7 +71,73 @@ class Poster extends Component {
 		  this.setState({redirect: "/successful"});
 	};
 
+	handleSubmitValidation = () =>{
+		
+			if(this.state.userId === ""){
+				console.log("In the useid get by");
+				window.setTimeout(function () { 
+				document.getElementById("user-id").focus();
+				document.getElementById("user-id").style.backgroundColor="yellow";
+				},0);
 
+				return false;
+			}else if(this.state.userId.length < 6){
+				
+				window.setTimeout(function () { 
+				document.getElementById("user-id").focus();
+				document.getElementById("user-id").style.backgroundColor="yellow";
+				document.getElementById("user-id").value = "";
+				
+				},0);
+
+				return false;
+			}else if(this.state.password === ""){
+				console.log("In the useid get by");
+				window.setTimeout(function () { 
+				document.getElementById("user-password").focus();
+				document.getElementById("user-password").style.backgroundColor="yellow";
+				},0);
+				return false;
+			}else if(this.state.username === ""){
+				console.log("In the useid get by");
+				window.setTimeout(function () { 
+				document.getElementById("name").focus();
+				document.getElementById("name").style.backgroundColor="yellow";
+				},0);
+				return false;
+			}else if(this.state.email === ""){
+				console.log("In the useid get by");
+				window.setTimeout(function () { 
+				document.getElementById("email").focus();
+				document.getElementById("email").style.backgroundColor="yellow";
+				},0);
+				return false;
+			}else if(this.state.city === ""){
+				console.log("In the useid get by");
+				window.setTimeout(function () { 
+				document.getElementById("city").focus();
+				document.getElementById("city").style.backgroundColor="yellow";
+				},0);
+				return false;
+			}else if(this.state.state === ""){
+				console.log("In the useid get by");
+				window.setTimeout(function () { 
+				document.getElementById("state").focus();
+				document.getElementById("state").style.backgroundColor="yellow";
+				},0);
+				return false;
+			}else if(this.state.zip === ""){
+				console.log("In the useid get by");
+				window.setTimeout(function () { 
+				document.getElementById("zip").focus();
+				document.getElementById("zip").style.backgroundColor="yellow";
+				},0);
+				return false;
+			}else{
+				return true;
+			}
+			
+	};
 	//DYNAMICALLY UPDATE COMPONENT STATE
 	handleInputChange = event =>{
 		const { name, value } = event.target;
@@ -85,8 +151,11 @@ class Poster extends Component {
     handleFormSubmit = event => {
 	  	event.preventDefault();
 	  	// if (this.state.topic && this.state.beginDT && this.state.endDT) {
+	  		let sendUser = this.handleSubmitValidation();
+	  		if(sendUser === true){
 	  		this.addPoster(this.state.userId, this.state.username, this.state.password,this.state.user_type,
 	  			this.state.email,this.state.phone_number,this.state.credentials,this.state.address,this.state.city,this.state.state,this.state.zip);
+	  		}
 	   		console.log("states = " + JSON.stringify(this.state, null, 2));
 	   // }
 	   
@@ -148,6 +217,10 @@ class Poster extends Component {
 						  		   type="text"
 						  		   id="user-id"
 						  		   onChange={this.handleInputChange} 
+						  		   placeholder="Must be 6 to 12 characters long"
+						  		   maxlength="12"
+						  		   pattern=".{6,12}"
+
 						  		/>
 						  		<FormLabel
 						  		  
@@ -179,6 +252,7 @@ class Poster extends Component {
 						  			name="phone_number"
 						  		   type="text"
 						  		   id="phone-number"
+						  		   placeholder="(555) 555-5555 or 555-555-5555"
 						  		/>
 						  		<FormLabel
 						  		  
@@ -209,7 +283,7 @@ class Poster extends Component {
 						  		/>
 						  		 <FormGroup controlId="formControlsSelect">
       								
-      								<FormControl componentClass="select" placeholder="State" name="state" value={this.state.state}>
+      								<FormControl componentClass="select" placeholder="State" name="state" value={this.state.state} id="state" onChange={this.handleInputChange}>
 									<option value="">select one</option>
   									<option value="AL">Alabama</option>
   									<option value="AK">Alaska</option>
@@ -274,8 +348,9 @@ class Poster extends Component {
 					  			  value={this.state.zip} 
 					  			   onChange={this.handleInputChange}
 					  			   name="zip"
-						  		   type="text"
+						  		   type="number"
 						  		   id="zip"
+						  		   placeholder="90210"
 						  		/>		
 						  		
 						  		<Submit 
