@@ -98,6 +98,20 @@ class Mechanic extends Component {
 				document.getElementById("user-password").style.backgroundColor="yellow";
 				},0);
 				return false;
+			}else if(this.state.password.length > 8 && this.state.password.length < 20){
+				console.log("In the useid get by");
+				window.setTimeout(function () { 
+				document.getElementById("user-password").focus();
+				document.getElementById("user-password").style.backgroundColor="yellow";
+				},0);
+				return false;
+			}else if(this.state.phone_number.length === 10){
+				console.log("In the useid get by");
+				window.setTimeout(function () { 
+				document.getElementById("user-password").focus();
+				document.getElementById("user-password").style.backgroundColor="yellow";
+				},0);
+				return false;
 			}else if(this.state.username === ""){
 				console.log("In the useid get by");
 				window.setTimeout(function () { 
@@ -218,6 +232,9 @@ class Mechanic extends Component {
 						  			name="password"
 						  		   type="password"
 						  		   id="user-password"
+						  		   placeholder="Must at least 8 characters long"
+						  		   maxlength="20"
+						  		   pattern=".{8,20}"
 						  		/>
 						  		<FormLabel
 						  		  text="Name"
@@ -226,6 +243,7 @@ class Mechanic extends Component {
 						  			value={this.state.username} 
 						  			onChange={this.handleInputChange}
 						  			name="username"
+						  			placeholder="John Smith"
 						  		   type="text"
 						  		   id="name"
 						  		/>
