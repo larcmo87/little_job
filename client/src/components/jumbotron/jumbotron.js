@@ -1,14 +1,15 @@
 import React from "react";
 import "./JumbotronCSS.css";
-import NAV from "../Nav/NavBar"
+// import NAV from "../Nav/NavBar"
 
  const Jumbotron = () =>
   <div style={{ height: 300 }} className="jumbotron">
     <div>
     	
   		<h1>little <br/><span id='litte-job'> Job</span></h1>
+  		<p>Little Jobs done without the <span>BIG</span> auto shop price</p>
   	</div>
-    <NAV />   
+   
   </div>;
 
 export default Jumbotron;

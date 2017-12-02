@@ -3,19 +3,34 @@
 	background-size: cover;
 	background-position: center center; 
     background-repeat: no-repeat;
+    min-height: 600px;
 
 
 }
 
 .jumbotron h1 {
-
+	margin-left:-700px;
+	font-size: 100px;
 	color: white;
 	font-family: 'Autour One', cursive;
-	margin-top:0;
+	margin-top:30px;
+
+}
+
+.jumbotron p {
+	margin-left:-250px;
+	font-size: 40px;
+	color: white;
+	font-family: 'Autour One', cursive;
+	margin-top:120px;
 
 }
 
 .jumbotron h1 span {
-	padding-left: 150px;
+	padding-left: 175px;
+}
+
+.jumbotron p span {
+	font-size: 70px;
 }
 
