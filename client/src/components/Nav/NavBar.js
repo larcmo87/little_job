@@ -30,7 +30,7 @@ class Nav extends Component {
 				  <a href={getNavPath()} className={(getActive() === "dashboard") ? "active" : ""}>{getNavType()}</a>
 			  	</div>
 			  	<div className="col-sm-4 col-md-4 col-lg-4 span-col">
-			  		<span id="descpt-span">Auto Mechaic Freelance Site</span>
+			  		{/* <span id="descpt-span">Auto Mechanic Freelance Site</span> */}
 			  	</div>
 				<div className="col-sm-4 col-md-4 col-lg-4">
 			  		<a href="/login" id="logout" onClick={this.handleLogOff}>{getLogOffOnText()}</a>   

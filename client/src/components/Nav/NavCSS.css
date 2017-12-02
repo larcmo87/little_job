@@ -7,8 +7,6 @@
     width: 100%;
     margin-left:0;
     
-
-
 }
 
 /* Style the links inside the navigation bar */
@@ -19,8 +17,9 @@
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
-    font-family: 'Autour One', cursive;
+    font-size: 20px;
+    /* font-family: 'Autour One', cursive; */
+    font-family: 'Archivo Black', sans-serif;
 
 }
 
@@ -90,6 +89,8 @@
   padding-top:20px;
   color:white;
   font-size: 28px;
+  /* font-family: 'Autour One', cursive; */
+  font-family: 'Archivo Black', sans-serif;
   
   /*height:40px;*/
   
@@ -137,7 +138,8 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size:10px;
-    font-family: 'Autour One', cursive;
+    /* font-family: 'Autour One', cursive; */
+    font-family: 'Archivo Black', sans-serif;
 
 }
   #descpt-span {
@@ -168,7 +170,8 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size: 10px;
-    font-family: 'Autour One', cursive;
+    /* font-family: 'Autour One', cursive; */
+    font-family: 'Archivo Black', sans-serif;
 
 }
   #descpt-span {
