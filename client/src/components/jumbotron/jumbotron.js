@@ -6,7 +6,7 @@ import "./JumbotronCSS.css";
   <div style={{ height: 300 }} className="jumbotron">
     <div>
     	
-  		<h1>little <br/><span id='litte-job'> Job</span></h1>
+  		<h1>little <br/><span id='litte-job'> job</span></h1>
   		<p>Little Jobs done without the <span>BIG</span> auto shop price</p>
   	</div>
    

@@ -5,23 +5,24 @@
     background-repeat: no-repeat;
     min-height: 600px;
 
-
 }
 
 .jumbotron h1 {
 	margin-left:-700px;
 	font-size: 100px;
 	color: white;
-	font-family: 'Autour One', cursive;
+	/* font-family: 'Autour One', cursive; */
+	font-family: 'Archivo Black', sans-serif;
 	margin-top:30px;
 
 }
 
 .jumbotron p {
 	margin-left:-250px;
-	font-size: 40px;
+	font-size: 200%;
 	color: white;
-	font-family: 'Autour One', cursive;
+	/* font-family: 'Autour One', cursive; */
+	font-family: 'Archivo Black', sans-serif;
 	margin-top:120px;
 
 }
@@ -33,4 +34,3 @@
 .jumbotron p span {
 	font-size: 70px;
 }
-
