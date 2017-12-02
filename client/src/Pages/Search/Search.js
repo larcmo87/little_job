@@ -1,7 +1,6 @@
 import { Input } from "../../components/Form";
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Redirect } from 'react-router';
 import { List, ListItem } from "../../components/List";
 import API from '../../utils/API';
 import { Panel, PanelHeading, PanelBody } from '../../components/Panel';
@@ -238,7 +237,7 @@ class Search extends Component {
 					<div className="col-sm-8 col-md-8 col-lg-8">													
 						<div className="row">
 							<div className="col-sm-2 col-md-2 col-lg-2">																		
-								<label id="search-location-lbl">Work Ads:</label>
+								<label id="search-location-lbl">Job Ads:</label>
 							</div>
 							<div className="col-sm-8 col-md-8 col-lg-8">		
 								<Input

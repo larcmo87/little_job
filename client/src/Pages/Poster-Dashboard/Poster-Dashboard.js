@@ -210,7 +210,7 @@ class PosterDashboard extends Component {
 								                				
 							                 				</ListItem>
 					                 					) : (
-					                 						(bid.accepted == "true") ? (
+					                 						(bid.accepted === "true") ? (
 
 					                 							<ListItem key={bid._id}> 
 									                				 <div className="bid-items">       									                					
@@ -231,7 +231,7 @@ class PosterDashboard extends Component {
 							                 					</ListItem>
 
 					                 						) : (
-					                 							<ListItem key={bid._id} style="background-color: red"> 
+					                 							<ListItem key={bid._id} > 
 									                				 <div className="bid-items">       									                					
 							                							<div className="bid-description">
 								                							 <div className="bid-amt-lbl">
