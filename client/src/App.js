@@ -3,11 +3,13 @@ import './App.css';
 import Jumbotron from './components/jumbotron';
 import Main from './Main';
 import Footer from './components/Footer';
+import NAV from './components/Nav';
 
 
 const App = () =>{
   return(
   <div className="App">
+  		   <NAV /> 
         <Jumbotron />
         
         <div className="container-fluid">         
