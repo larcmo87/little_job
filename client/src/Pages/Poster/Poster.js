@@ -98,6 +98,20 @@ class Poster extends Component {
 				document.getElementById("user-password").style.backgroundColor="yellow";
 				},0);
 				return false;
+			}else if(this.state.password.length > 8 && this.state.password.length < 20){
+				console.log("In the useid get by");
+				window.setTimeout(function () { 
+				document.getElementById("user-password").focus();
+				document.getElementById("user-password").style.backgroundColor="yellow";
+				},0);
+				return false;
+			}else if(this.state.phone_number.length === 10){
+				console.log("In the useid get by");
+				window.setTimeout(function () { 
+				document.getElementById("user-password").focus();
+				document.getElementById("user-password").style.backgroundColor="yellow";
+				},0);
+				return false;
 			}else if(this.state.username === ""){
 				console.log("In the useid get by");
 				window.setTimeout(function () { 
@@ -230,6 +244,9 @@ class Poster extends Component {
 						  			value={this.state.password} 
 						  			onChange={this.handleInputChange}
 						  			name="password"
+						  			placeholder="Must at least 8 characters long"
+						  		   maxlength="20"
+						  		   pattern=".{8,20}"
 						  		   type="password"
 						  		   id="user-password"
 						  		/>
